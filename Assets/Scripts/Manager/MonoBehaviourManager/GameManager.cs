@@ -34,6 +34,38 @@ public class GameManager : MonoBehaviour
         factoryManager = new FactoryManager();
         audioManager = new AudioManager() ;
         uiManager = new UIManager();
+        //进入开始游戏场景
+        uiManager.mUIFacade.currentSceneState.OnEnterScene();
+    }
+
+    //获取精灵资源
+    public Sprite GetSprite(string path)
+    {
+        return factoryManager.spriteFactory.GetSingleResource(path);
+    }
+
+    //获取AudioClip资源
+    public AudioClip GetAudioClip(string path)
+    {
+        return factoryManager.audioClipFactory.GetSingleResource(path);
+    }
+
+    //获取RuntimeAnimatorController资源
+    public RuntimeAnimatorController GetRuntimeAnimatorController(string path)
+    {
+        return factoryManager.runtimeAnimatorControllerFactory.GetSingleResource(path);
+    }
+
+    //获取游戏物体资源
+    public GameObject GetGameObjectResource(FactoryType factoryType,string name)
+    {
+        return factoryManager.factoryDict[factoryType].GetItem(name);
+    }
+
+    //回收游戏物体到对象池
+    public void PushGameObjectToFactory(FactoryType factoryType,string name,GameObject go)
+    {
+        factoryManager.factoryDict[factoryType].PushItem(name, go);
     }
 
 }

@@ -18,14 +18,18 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
     //滑动速度
     public float smoothingSpeed = 10.0f;
 
+    private int curIndex;
+    private int totalIndex;
 
-    void Start()
+    public Text txt_Page;
+
+    void Awake()
     {
         scrollRect = GetComponent<ScrollRect>();
         layout = GetComponentInChildren<GridLayoutGroup>();
         scrollRect.onValueChanged.AddListener((vector2) => { Debug.Log(scrollRect.horizontalNormalizedPosition); });
 
-        InitPagePosition();
+        Init();
     }
 
     void Update()
@@ -36,9 +40,15 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
         }
     }
 
-    private void InitPagePosition()
+    public void Init()
     {
         int length = scrollRect.content.childCount;
+        totalIndex = length;
+        curIndex = 0;
+        SetTxtPage();
+        targetHorizontalPosition = 0.0f;
+        scrollRect.horizontalNormalizedPosition = 0;
+
         //初始化content的宽度
         scrollRect.content.sizeDelta = new Vector2((layout.cellSize.x + layout.spacing.x) * (length - 1),scrollRect.GetComponent<RectTransform>().sizeDelta.y);
         //初始化数组
@@ -49,6 +59,8 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
             page[i] = i * 1.0f / (length - 1);
         }
     }
+
+
 
     public void OnBeginDrag(PointerEventData eventData)
     {
@@ -76,5 +88,16 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
             }
         }
         targetHorizontalPosition = page[index];
+        curIndex = index;
+        SetTxtPage();
+    }
+
+    public void SetTxtPage()
+    {
+        if(txt_Page != null)
+        {
+            string msg = (curIndex + 1).ToString() + "/" + totalIndex;
+            txt_Page.text = msg;
+        }
     }
 }

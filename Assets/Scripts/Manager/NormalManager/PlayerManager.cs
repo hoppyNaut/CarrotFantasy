@@ -12,5 +12,27 @@ using UnityEngine;
 
 public class PlayerManager 
 {
-    
+    //冒险模式解锁地图个数
+    public int adventrueModeNum;
+    //隐藏关卡解锁地图个数
+    public int burriedLevelNum;
+    //Boss模式解锁地图个数
+    public int bossModeNum;
+    //金币数
+    public int coin;
+    //击败怪物总数
+    public int killMonsterNum;
+    //击败Boss总数
+    public int killBossNum;
+    //清除道具总数
+    public int ClearItemNum;
+
+
+    //怪物窝
+    public int cookies;
+    public int milk;
+    public int nest;
+    public int diamonds;
+
+
 }
