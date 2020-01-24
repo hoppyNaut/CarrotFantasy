@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\Factory\UIFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\UIPanelFactory.cs" />
     <Compile Include="Assets\Scripts\Game\Constant.cs" />
+    <Compile Include="Assets\Scripts\Game\Stage.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameController.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameManager.cs" />
     <Compile Include="Assets\Scripts\Manager\NormalManager\AudioManager.cs" />

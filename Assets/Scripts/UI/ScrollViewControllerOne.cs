@@ -100,4 +100,22 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
             txt_Page.text = msg;
         }
     }
+
+    public void MoveNext()
+    {
+        if(curIndex < page.Length - 1)
+        {
+            curIndex++;
+            targetHorizontalPosition = page[curIndex];
+        }
+    }
+
+    public void MovePrev()
+    {
+        if(curIndex > 0)
+        {
+            curIndex--;
+            targetHorizontalPosition = page[curIndex];
+        }
+    }
 }
