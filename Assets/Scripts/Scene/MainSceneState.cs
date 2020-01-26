@@ -25,7 +25,8 @@ public class MainSceneState : BaseSceneState
         mUIFacade.AddPanelToDict(Constant.HelpPanel);
         mUIFacade.AddPanelToDict(Constant.GameLoadPanel);
         base.OnEnterScene();
-        mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.MainPanel).EnterPanel();
     }
 
     public override void OnExitScene()

@@ -59,14 +59,16 @@ public class MainPanel : BasePanel
     {
         exitTween = mainPanelTween[0];
         ExitPanel();
-        mUIFacade.currentScenePanelDict[Constant.HelpPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.HelpPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.HelpPanel).EnterPanel();
     }
 
     public void MoveToRight()
     {
         exitTween = mainPanelTween[1];
         ExitPanel();
-        mUIFacade.currentScenePanelDict[Constant.SetPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.SetPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.SetPanel).EnterPanel();
     }
 
     //播放UI动画
@@ -79,19 +81,22 @@ public class MainPanel : BasePanel
 
     public void OnBtnNormalClick()
     {
-        mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
         mUIFacade.ChangeSceneState(new GameNormalOptionSceneState(mUIFacade));
     }
 
     public void OnBtnBossClick()
     {
-        mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
         mUIFacade.ChangeSceneState(new GameBossOptionSceneState(mUIFacade));
     }
 
     public void OnBtnMonsterNestClick()
     {
-        mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
         mUIFacade.ChangeSceneState(new MonsterNestSceneState(mUIFacade));
     }
 

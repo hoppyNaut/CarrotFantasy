@@ -21,7 +21,7 @@ public class UIFacade
     public PlayerManager mPlayerManager;
 
     //下层UI面板
-    public Dictionary<string, IBasePanel> currentScenePanelDict;
+    private Dictionary<string, IBasePanel> currentScenePanelDict;
 
     private GameObject mask;
     private Image maskImage;
@@ -160,6 +160,16 @@ public class UIFacade
     {
         currentScenePanelDict.Clear();
         mUIManager.ClearDict();
+    }
+
+    public IBasePanel GetCurScenePanel(string panelName)
+    {
+        IBasePanel panel;
+        if(currentScenePanelDict.TryGetValue(panelName,out panel))
+        {
+            return panel;
+        }
+        return null;
     }
 
     #region AudioOperation

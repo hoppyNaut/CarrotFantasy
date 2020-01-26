@@ -16,14 +16,17 @@ public class GameNormalOptionPanel : BasePanel
         else
         {
             //返回大关卡选择面板
-            mUIFacade.currentScenePanelDict[Constant.GameNormalLevelPanel].ExitPanel();
-            mUIFacade.currentScenePanelDict[Constant.GameNormalBigLevelPanel].EnterPanel();
+            // mUIFacade.currentScenePanelDict[Constant.GameNormalLevelPanel].ExitPanel();
+            mUIFacade.GetCurScenePanel(Constant.GameNormalLevelPanel).ExitPanel();
+            //mUIFacade.currentScenePanelDict[Constant.GameNormalBigLevelPanel].EnterPanel();
+            mUIFacade.GetCurScenePanel(Constant.GameNormalBigLevelPanel).EnterPanel();
         }
         isInBigLevel = true;
     }
 
     public void ShowHelpPanel()
     {
-        mUIFacade.currentScenePanelDict[Constant.HelpPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.HelpPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.HelpPanel).EnterPanel();
     }
 }

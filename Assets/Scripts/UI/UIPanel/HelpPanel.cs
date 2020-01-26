@@ -88,6 +88,7 @@ public class HelpPanel : BasePanel
     public void BackToMain()
     {
         ExitPanel();
-        mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
+        //mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
+        mUIFacade.GetCurScenePanel(Constant.MainPanel).EnterPanel();
     }
 }

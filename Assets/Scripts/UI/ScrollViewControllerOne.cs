@@ -107,6 +107,7 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
         {
             curIndex++;
             targetHorizontalPosition = page[curIndex];
+            SetTxtPage();
         }
     }
 
@@ -116,6 +117,7 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
         {
             curIndex--;
             targetHorizontalPosition = page[curIndex];
+            SetTxtPage();
         }
     }
 }
