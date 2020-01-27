@@ -55,7 +55,76 @@ public class GameNormalLevelPanel : BasePanel
     public void Init(int bigLevelID)
     {
         this.bigLevelID = bigLevelID;
+        levelID = 1;
         EnterPanel();
+    }
+
+    //更新动态UI
+    public void UpdateDynamicUI(string spritePath)
+    {
+        //设置左右背景板
+        img_BGLeft.sprite = mUIFacade.GetSprite(spritePath + "BG_Left");
+        img_BGRight.sprite = mUIFacade.GetSprite(spritePath + "BG_Right");
+        for(int i = 1; i < playerManager.totalNormalModeLevelNumList[bigLevelID - 1] + 1; i++)
+        {
+            GameObject itemGo = CreateUIAndSetPosition("Img_Level", levelContentTrans);
+            levelContentGoList.Add(itemGo);
+            //设置背景UI
+            itemGo.transform.GetComponent<Image>().sprite = mUIFacade.GetSprite(spritePath + "Level_" + i.ToString());
+            //获取子物体的Transform
+            Transform img_BgTrans = itemGo.transform.Find("Img_Bg");
+            Transform img_LockTrans = itemGo.transform.Find("Img_Lock");
+            Transform img_CarrotTrans = itemGo.transform.Find("Img_Carrot");
+            Transform img_AllClearTrans = itemGo.transform.Find("Img_AllClear");
+            img_CarrotTrans.gameObject.SetActive(false);
+            img_AllClearTrans.gameObject.SetActive(false);
+            //获取当前小关卡信息索引
+            int index = 0;
+            for(int j = 0; j < bigLevelID - 1; j++)
+            {
+                index += playerManager.totalNormalModeLevelNumList[j];
+            }
+            index += (i - 1);
+            Stage curStage = playerManager.NormalModeLevelInfoList[index];
+            if(curStage.mUnLocked)
+            {
+                //关卡已解锁
+               if(curStage.mAllClear)
+                {
+                    img_AllClearTrans.gameObject.SetActive(true);
+                }
+               if(curStage.mCarrotState != 0)
+                {
+                    img_CarrotTrans.gameObject.SetActive(true);
+                    img_CarrotTrans.GetComponent<Image>().sprite = mUIFacade.GetSprite(resPath + "Carrot_" + curStage.mCarrotState.ToString());
+                }
+                img_BgTrans.gameObject.SetActive(false);
+                img_LockTrans.gameObject.SetActive(false);
+            }
+            else
+            {
+                //关卡未解锁
+                if(curStage.mIsHiddenLevel)
+                {
+                    img_LockTrans.gameObject.SetActive(false);
+                    img_BgTrans.gameObject.SetActive(true);
+                    //设置解锁怪物图片
+                    Image img_Monster = img_BgTrans.Find("Img_Monster").GetComponent<Image>();
+                    img_Monster.sprite = mUIFacade.GetSprite("MonsterNest/Monster/Baby/" + bigLevelID.ToString());
+                    img_Monster.SetNativeSize();
+                }
+                else
+                {
+                    img_LockTrans.gameObject.SetActive(true);
+                    img_BgTrans.gameObject.SetActive(false);
+                }
+            }
+
+        }
+        //设置滚动视图Content大小
+        int childCount = levelContentTrans.childCount;
+        sv_Level.InitContentSize(childCount);
+
     }
 
     //资源预加载
@@ -80,6 +149,16 @@ public class GameNormalLevelPanel : BasePanel
             mUIFacade.GetSprite(resPath + "Tower/Tower_" + i.ToString());
         }
 
+    }
+
+    //实例化UI到Content下
+    private GameObject CreateUIAndSetPosition(string name,Transform parentTrans)
+    {
+        GameObject itemGo = mUIFacade.GetGameObjectResource(FactoryType.UIFactory, name);
+        itemGo.transform.SetParent(parentTrans);
+        itemGo.transform.localPosition = Vector3.zero;
+        itemGo.transform.localScale = Vector3.one;
+        return itemGo;
     }
 
 }

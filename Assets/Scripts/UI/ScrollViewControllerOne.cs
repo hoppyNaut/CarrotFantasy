@@ -60,7 +60,11 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
         }
     }
 
-
+    public void InitContentSize(int itemNum)
+    {
+        scrollRect.content.sizeDelta = new Vector2((layout.cellSize.x + layout.spacing.x) * (itemNum - 1), scrollRect.GetComponent<RectTransform>().sizeDelta.y);
+        totalIndex = itemNum;
+    }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
