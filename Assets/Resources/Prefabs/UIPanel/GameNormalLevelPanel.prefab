@@ -568,7 +568,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4597867466776932486}
-  - component: {fileID: 134866349}
+  - component: {fileID: 4538495231242612112}
   m_Layer: 5
   m_Name: GameNormalLevelPanel
   m_TagString: Untagged
@@ -602,7 +602,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &134866349
+--- !u!114 &4538495231242612112
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -611,9 +611,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4597867466776932487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b7a8d2ad582b784f83c290365dc2e2d, type: 3}
+  m_Script: {fileID: 11500000, guid: 846369d21906361458a6db361cc3d9d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bigLevelID: 0
+  levelID: 0
 --- !u!1 &4597867466800806550
 GameObject:
   m_ObjectHideFlags: 0

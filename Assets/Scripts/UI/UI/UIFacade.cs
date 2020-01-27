@@ -85,7 +85,6 @@ public class UIFacade
     //显示遮罩
     public void ShowMask()
     {
-        mask.SetActive(true);
         mask.transform.SetSiblingIndex(10);
         Tween t = DOTween.To(() => maskImage.color, toColor => maskImage.color = toColor, new Color(0, 0,0, 1), 2.0f);
         t.OnComplete(ExitSceneComplete);
@@ -102,7 +101,6 @@ public class UIFacade
     {
         mask.transform.SetSiblingIndex(10);
         Tween t = DOTween.To(() => maskImage.color, toColor => maskImage.color = toColor, new Color(0, 0, 0, 0), 2.0f);
-        t.OnComplete(()=> { mask.SetActive(false); });
     }
 
 

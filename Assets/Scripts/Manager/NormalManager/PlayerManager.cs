@@ -34,10 +34,17 @@ public class PlayerManager
     public int nest;
     public int diamonds;
 
+    //大关卡数量
+    public int bigLevelNum;
+    //炮塔数量
+    public int towerNum;
     //大关卡是否解锁信息列表
-    public List<bool> NormalModeBigLevelLockedList;
+    public List<bool> unLockedNormalModeBigLevelList;
     //小关卡信息列表
     public List<Stage> NormalModeLevelInfoList;
     //大关卡对应解锁小关卡数量列表
-    public List<int> NormalModeLevelNumList;
+    public List<int> unLockedNormalModeLevelNumList;
+    //大关卡对应所有小关卡数量
+    public List<int> totalNormalModeLevelNumList;
+
 }

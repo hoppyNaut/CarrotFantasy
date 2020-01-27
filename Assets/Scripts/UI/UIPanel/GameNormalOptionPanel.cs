@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/****************************************************
+	文件：GameNormalOptionPanel.cs
+	作者：Shen
+	邮箱:  879085103@qq.com
+	日期：2020/01/27 15:41   	
+	功能：关卡选择共用面板
+*****************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 

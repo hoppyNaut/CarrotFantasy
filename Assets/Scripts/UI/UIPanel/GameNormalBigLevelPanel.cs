@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿/****************************************************
+	文件：GameNormalBigLevelPanel.cs
+	作者：Shen
+	邮箱:  879085103@qq.com
+	日期：2020/01/27 15:39   	
+	功能：大关卡选择面板
+*****************************************************/
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -27,6 +35,18 @@ public class GameNormalBigLevelPanel : BasePanel
             Transform trans = bigLevelContentTrans.GetChild(i);
             bigLevelPages[i] = trans;
             //显示大关卡信息
+            //ShowBigLevelState(playerManager.unLockedNormalModeBigLevelList[i], playerManager.unLockedNormalModeLevelNumList[i], 
+            //    playerManager.totalNormalModeLevelNumList[i], bigLevelPages[i], i + 1);
+        }
+        hasRigisterEvent = true;
+    }
+
+    private void OnEnable()
+    {
+        for(int i = 0; i < bigLevelPageCount; i++)
+        {
+            //ShowBigLevelState(playerManager.unLockedNormalModeBigLevelList[i], playerManager.unLockedNormalModeLevelNumList[i],
+            //    playerManager.totalNormalModeLevelNumList[i], bigLevelPages[i], i + 1);
         }
     }
 
@@ -41,18 +61,23 @@ public class GameNormalBigLevelPanel : BasePanel
                 = unLockedLevelNum + "/" + totalLevelNum;
             Button theBigLevelButton = theBigLevelTrans.GetComponent<Button>();
             theBigLevelButton.interactable = true;
-            theBigLevelButton.onClick.AddListener(() =>
+            if(!hasRigisterEvent)
             {
-                //离开大关卡页面
-                //mUIFacade.currentScenePanelDict[Constant.GameNormalBigLevelPanel].ExitPanel();
-                mUIFacade.GetCurScenePanel(Constant.GameNormalBigLevelPanel).ExitPanel();
-                //初始化并进入小关卡页面
-                //mUIFacade.currentScenePanelDict[Constant.GameNormalLevelPanel].EnterPanel();
-                GameNormalLevelPanel gameNormalLevelPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalLevelPanel) as GameNormalLevelPanel;
-                gameNormalLevelPanel.Init(bigLevelID);
-                GameNormalOptionPanel gameNormalOptionPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalOptionPanel) as GameNormalOptionPanel;
-                gameNormalOptionPanel.isInBigLevel = false;
-            });
+                theBigLevelButton.onClick.AddListener(() =>
+                {
+                    //离开大关卡页面
+                    //mUIFacade.currentScenePanelDict[Constant.GameNormalBigLevelPanel].ExitPanel();
+                    mUIFacade.GetCurScenePanel(Constant.GameNormalBigLevelPanel).ExitPanel();
+                    //初始化并进入小关卡页面
+                    //mUIFacade.currentScenePanelDict[Constant.GameNormalLevelPanel].EnterPanel();
+                    GameNormalLevelPanel gameNormalLevelPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalLevelPanel) as GameNormalLevelPanel;
+                    gameNormalLevelPanel.Init(bigLevelID);
+                    //设置所在页面
+                    GameNormalOptionPanel gameNormalOptionPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalOptionPanel) as GameNormalOptionPanel;
+                    gameNormalOptionPanel.isInBigLevel = false;
+                });
+            }
+
         }
         else//未解锁状态
         {
@@ -65,7 +90,14 @@ public class GameNormalBigLevelPanel : BasePanel
     public override void EnterPanel()
     {
         base.EnterPanel();
-        transform.SetSiblingIndex(8);
+        sv_bigLevel.Init();
+        gameObject.SetActive(true);
+    }
+
+    public override void ExitPanel()
+    {
+        base.ExitPanel();
+        gameObject.SetActive(false);
     }
 
     public void MoveNext()
