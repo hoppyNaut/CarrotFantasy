@@ -20,13 +20,11 @@ public class MainSceneState : BaseSceneState
     public override void OnEnterScene()
     {
         //添加面板
-        mUIFacade.AddPanelToDict(Constant.MainPanel);
         mUIFacade.AddPanelToDict(Constant.SetPanel);
         mUIFacade.AddPanelToDict(Constant.HelpPanel);
+        mUIFacade.AddPanelToDict(Constant.MainPanel);
         mUIFacade.AddPanelToDict(Constant.GameLoadPanel);
         base.OnEnterScene();
-        //mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
-        mUIFacade.GetCurScenePanel(Constant.MainPanel).EnterPanel();
     }
 
     public override void OnExitScene()

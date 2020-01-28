@@ -23,8 +23,6 @@ public class GameNormalLevelPanel : BasePanel
     private Transform emp_TowerTrans;
     private Image img_BGLeft;
     private Image img_BGRight;
-    private Image img_Carrot;
-    private Image img_AllClear;
     private Text txt_Waves;
 
     private PlayerManager playerManager;
@@ -49,28 +47,74 @@ public class GameNormalLevelPanel : BasePanel
         sv_Level = transform.Find("Scroll View").GetComponent<ScrollViewControllerOne>();
         bigLevelID = 1;
         levelID = 1;
+
+        LoadResources();
     }
 
     //初始化不同大关卡对应的小关卡
-    public void Init(int bigLevelID)
+    public void ToLevelPanel(int bigLevelID)
     {
         this.bigLevelID = bigLevelID;
         levelID = 1;
         EnterPanel();
     }
 
-    //更新动态UI
+    public override void InitPanel()
+    {
+        base.InitPanel();
+        gameObject.SetActive(false);
+    }
+
+    public override void EnterPanel()
+    {
+        base.EnterPanel();
+        gameObject.SetActive(true);
+        string spritePath = resPath + bigLevelID.ToString() + "/";
+        UpdateDynamicUI(spritePath);
+        string towerPath = resPath + "Tower/";
+        UpdateStaticUI(towerPath);
+        sv_Level.Init();
+    }
+
+    public override void UpdatePanel()
+    {
+        base.UpdatePanel();
+        string towerPath = resPath + "Tower/";
+        UpdateStaticUI(towerPath);
+    }
+
+    public override void ExitPanel()
+    {
+        base.ExitPanel();
+        gameObject.SetActive(false);
+    }
+
+    public void ToGamePanel()
+    {
+        GameManager.Instance.curStage = GetCurStage(bigLevelID, levelID);
+        mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
+        mUIFacade.ChangeSceneState(new NormalModeSceneState(mUIFacade));
+    }
+
+
+    //更新动态UI(关卡UI)
     public void UpdateDynamicUI(string spritePath)
     {
+        if(levelContentGoList.Count != 0)
+        {
+            DestroyMapUI();
+        }
         //设置左右背景板
         img_BGLeft.sprite = mUIFacade.GetSprite(spritePath + "BG_Left");
         img_BGRight.sprite = mUIFacade.GetSprite(spritePath + "BG_Right");
-        for(int i = 1; i < playerManager.totalNormalModeLevelNumList[bigLevelID - 1] + 1; i++)
+        for (int i = 1; i < playerManager.totalNormalModeLevelNumList[bigLevelID - 1] + 1; i++)
         {
             GameObject itemGo = CreateUIAndSetPosition("Img_Level", levelContentTrans);
             levelContentGoList.Add(itemGo);
+            
             //设置背景UI
             itemGo.transform.GetComponent<Image>().sprite = mUIFacade.GetSprite(spritePath + "Level_" + i.ToString());
+            
             //获取子物体的Transform
             Transform img_BgTrans = itemGo.transform.Find("Img_Bg");
             Transform img_LockTrans = itemGo.transform.Find("Img_Lock");
@@ -78,14 +122,10 @@ public class GameNormalLevelPanel : BasePanel
             Transform img_AllClearTrans = itemGo.transform.Find("Img_AllClear");
             img_CarrotTrans.gameObject.SetActive(false);
             img_AllClearTrans.gameObject.SetActive(false);
-            //获取当前小关卡信息索引
-            int index = 0;
-            for(int j = 0; j < bigLevelID - 1; j++)
-            {
-                index += playerManager.totalNormalModeLevelNumList[j];
-            }
-            index += (i - 1);
-            Stage curStage = playerManager.NormalModeLevelInfoList[index];
+            
+            //获取当前小关卡信息
+            Stage curStage = GetCurStage(bigLevelID,i);
+
             if(curStage.mUnLocked)
             {
                 //关卡已解锁
@@ -122,9 +162,51 @@ public class GameNormalLevelPanel : BasePanel
 
         }
         //设置滚动视图Content大小
-        int childCount = levelContentTrans.childCount;
-        sv_Level.InitContentSize(childCount);
+        sv_Level.Init();
 
+    }
+
+    //更新静态UI(炮台、波次、是否锁定等)
+    public void UpdateStaticUI(string spritePath)
+    {
+        //每次更新需要先清除原有的炮塔
+        if(towerContentGoList.Count != 0)
+        {
+            DestroyTowerUI();
+        }
+        //获取当前小关卡信息
+        Stage curStage = GetCurStage(bigLevelID,levelID);
+
+        lockBtnGo.SetActive(false);
+        if (!curStage.mUnLocked)
+        {
+            lockBtnGo.SetActive(true);
+        }
+        //显示波次数
+        txt_Waves.text = curStage.mTotalWaves.ToString();
+        //显示炮塔信息
+        for(int i = 1; i < curStage.mTowerIDListLength + 1; i++)
+        {
+            //实例化UI
+            GameObject towerGo = CreateUIAndSetPosition("Img_Tower", emp_TowerTrans);
+            towerContentGoList.Add(towerGo);
+            towerGo.GetComponent<Image>().sprite = mUIFacade.GetSprite(spritePath + "Tower_" + curStage.mTowerIDList[i - 1].ToString());
+        }
+    }
+
+
+    private Stage GetCurStage(int bigLevelID, int levelID)
+    {
+        //获取当前小关卡索引
+        int index = 0;
+        for(int i = 0; i < bigLevelID - 1; i++)
+        {
+            index += playerManager.totalNormalModeLevelNumList[i];
+        }
+        index += (levelID - 1);
+        Debug.Log("Index:" + index);
+        Stage curStage = playerManager.NormalModeLevelInfoList[index];
+        return curStage;
     }
 
     //资源预加载
@@ -160,5 +242,34 @@ public class GameNormalLevelPanel : BasePanel
         itemGo.transform.localScale = Vector3.one;
         return itemGo;
     }
+
+    //销毁Content下的UI
+    private void DestroyMapUI()
+    {
+        foreach(var item in levelContentGoList)
+        {
+            mUIFacade.PushGameObjectToFactory(FactoryType.UIFactory, item.name, item);
+        }
+        levelContentGoList.Clear();
+    }
+
+    private void DestroyTowerUI()
+    {
+        foreach(var item in towerContentGoList)
+        {
+            item.GetComponent<Image>().sprite = null;
+            mUIFacade.PushGameObjectToFactory(FactoryType.UIFactory, item.name, item);
+        }
+        towerContentGoList.Clear();
+    }
+
+
+    //更新当前滑动关卡的信息
+    public void UpdateCurLevelInfo(int levelID)
+    {
+        this.levelID = levelID;
+        UpdatePanel();
+    }
+
 
 }

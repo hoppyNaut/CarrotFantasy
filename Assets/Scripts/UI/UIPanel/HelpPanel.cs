@@ -43,7 +43,6 @@ public class HelpPanel : BasePanel
     {
         base.InitPanel();
         transform.localPosition = new Vector3(800, 0, 0);
-        transform.SetSiblingIndex(8);
 
         sv_HelpPage.Init();
         sv_TowerPage.Init();
@@ -62,7 +61,6 @@ public class HelpPanel : BasePanel
     public override void ExitPanel()
     {
         base.ExitPanel();
-
         helpPanelTween.PlayBackwards();
     }
 
@@ -97,6 +95,22 @@ public class HelpPanel : BasePanel
     {
         ExitPanel();
         //mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
-        mUIFacade.GetCurScenePanel(Constant.MainPanel).EnterPanel();
+        if(mUIFacade.currentSceneState.GetType() == typeof(MainSceneState))
+        {
+            mUIFacade.GetCurScenePanel(Constant.MainPanel).EnterPanel();
+        }
+        else if(mUIFacade.currentSceneState.GetType() == typeof(GameNormalOptionSceneState))
+        {
+            GameNormalOptionPanel gameNormalOptionPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalOptionPanel) as GameNormalOptionPanel;
+            if (gameNormalOptionPanel.isInBigLevel)
+            {
+                mUIFacade.GetCurScenePanel(Constant.GameNormalBigLevelPanel).EnterPanel();
+            }
+            else
+            {
+                mUIFacade.GetCurScenePanel(Constant.GameNormalLevelPanel).EnterPanel();
+            }
+            
+        }
     }
 }

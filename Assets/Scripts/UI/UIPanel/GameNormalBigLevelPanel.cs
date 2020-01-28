@@ -35,8 +35,8 @@ public class GameNormalBigLevelPanel : BasePanel
             Transform trans = bigLevelContentTrans.GetChild(i);
             bigLevelPages[i] = trans;
             //显示大关卡信息
-            //ShowBigLevelState(playerManager.unLockedNormalModeBigLevelList[i], playerManager.unLockedNormalModeLevelNumList[i], 
-            //    playerManager.totalNormalModeLevelNumList[i], bigLevelPages[i], i + 1);
+            ShowBigLevelState(playerManager.unLockedNormalModeBigLevelList[i], playerManager.unLockedNormalModeLevelNumList[i],
+                playerManager.totalNormalModeLevelNumList[i], bigLevelPages[i], i + 1);
         }
         hasRigisterEvent = true;
     }
@@ -45,8 +45,8 @@ public class GameNormalBigLevelPanel : BasePanel
     {
         for(int i = 0; i < bigLevelPageCount; i++)
         {
-            //ShowBigLevelState(playerManager.unLockedNormalModeBigLevelList[i], playerManager.unLockedNormalModeLevelNumList[i],
-            //    playerManager.totalNormalModeLevelNumList[i], bigLevelPages[i], i + 1);
+            ShowBigLevelState(playerManager.unLockedNormalModeBigLevelList[i], playerManager.unLockedNormalModeLevelNumList[i],
+                playerManager.totalNormalModeLevelNumList[i], bigLevelPages[i], i + 1);
         }
     }
 
@@ -55,6 +55,7 @@ public class GameNormalBigLevelPanel : BasePanel
         //解锁状态
         if(unLocked)
         {
+            Debug.Log("Enter UnLock State");
             theBigLevelTrans.Find("Img_Lock").gameObject.SetActive(false);
             theBigLevelTrans.Find("Img_Page").gameObject.SetActive(true);
             theBigLevelTrans.Find("Img_Page").Find("Txt_Page").GetComponent<Text>().text 
@@ -71,7 +72,7 @@ public class GameNormalBigLevelPanel : BasePanel
                     //初始化并进入小关卡页面
                     //mUIFacade.currentScenePanelDict[Constant.GameNormalLevelPanel].EnterPanel();
                     GameNormalLevelPanel gameNormalLevelPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalLevelPanel) as GameNormalLevelPanel;
-                    gameNormalLevelPanel.Init(bigLevelID);
+                    gameNormalLevelPanel.ToLevelPanel(bigLevelID);
                     //设置所在页面
                     GameNormalOptionPanel gameNormalOptionPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalOptionPanel) as GameNormalOptionPanel;
                     gameNormalOptionPanel.isInBigLevel = false;
@@ -85,6 +86,11 @@ public class GameNormalBigLevelPanel : BasePanel
             theBigLevelTrans.Find("Img_Page").gameObject.SetActive(false);
             theBigLevelTrans.GetComponent<Button>().interactable = false;
         }
+    }
+    public override void InitPanel()
+    {
+        base.InitPanel();
+        gameObject.SetActive(true);
     }
 
     public override void EnterPanel()

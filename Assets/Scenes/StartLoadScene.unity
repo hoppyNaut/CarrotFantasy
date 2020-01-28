@@ -165,6 +165,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cd874b34dbf5374f9359af78fcc1cc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerManager:
+    adventrueModeNum: 0
+    burriedLevelNum: 0
+    bossModeNum: 0
+    coin: 0
+    killMonsterNum: 0
+    killBossNum: 0
+    ClearItemNum: 0
+    cookies: 0
+    milk: 0
+    nest: 0
+    diamonds: 0
+    bigLevelNum: 0
+    towerNum: 0
+    unLockedNormalModeBigLevelList: 
+    unLockedNormalModeLevelNumList: 
+    totalNormalModeLevelNumList: 
 --- !u!82 &507515845
 AudioSource:
   m_ObjectHideFlags: 0

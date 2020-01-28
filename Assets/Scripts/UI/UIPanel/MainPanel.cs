@@ -45,7 +45,7 @@ public class MainPanel : BasePanel
     public override void EnterPanel()
     {
         base.EnterPanel();
-        transform.SetSiblingIndex(8);
+        //transform.SetSiblingIndex(8);
         carrotAnimator.Play("CarrotGrow");
         if(exitTween != null)
         {

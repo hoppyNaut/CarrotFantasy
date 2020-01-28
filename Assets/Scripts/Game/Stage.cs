@@ -26,12 +26,12 @@ public class Stage
     //是否是隐藏关卡
     public bool mIsHiddenLevel;
     //关卡怪物波次
-    public int mTotalRound;
+    public int mTotalWaves;
 
-    public Stage(int totalRound,int towerIDListLength,int [] towerIDList,bool allClear,
+    public Stage(int totalWaves,int towerIDListLength,int [] towerIDList,bool allClear,
         int carrotState,int levelID,int bigLevelID,bool unLocked,bool isHiddenLevel)
     {
-        mTotalRound = totalRound;
+        mTotalWaves = totalWaves;
         mTowerIDListLength = towerIDListLength;
         mTowerIDList = towerIDList;
         mAllClear = allClear;

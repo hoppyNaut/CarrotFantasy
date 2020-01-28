@@ -50,7 +50,7 @@ public class SetPanel : BasePanel
     {
         base.InitPanel();
         transform.localPosition = new Vector3(-800, 0, 0);
-        transform.SetSiblingIndex(8);
+        //transform.SetSiblingIndex(8);
     }
 
     public override void EnterPanel()

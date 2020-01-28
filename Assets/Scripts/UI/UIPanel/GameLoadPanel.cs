@@ -18,12 +18,17 @@ public class GameLoadPanel : BasePanel
         base.Awake();
     }
 
+    public override void InitPanel()
+    {
+        base.InitPanel();
+        gameObject.SetActive(false);
+    }
+
 
     public override void EnterPanel()
     {
         base.EnterPanel();
         gameObject.SetActive(true);
-        transform.SetSiblingIndex(8);
     }
 
     public override void ExitPanel()

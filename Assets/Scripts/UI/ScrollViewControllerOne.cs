@@ -27,7 +27,7 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
     {
         scrollRect = GetComponent<ScrollRect>();
         layout = GetComponentInChildren<GridLayoutGroup>();
-        scrollRect.onValueChanged.AddListener((vector2) => { Debug.Log(scrollRect.horizontalNormalizedPosition); });
+        //scrollRect.onValueChanged.AddListener((vector2) => { Debug.Log(scrollRect.horizontalNormalizedPosition); });
 
         Init();
     }
@@ -94,6 +94,8 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
         targetHorizontalPosition = page[index];
         curIndex = index;
         SetTxtPage();
+        //发送翻页信息
+        SendMessageUpwards("UpdateCurLevelInfo", curIndex + 1, SendMessageOptions.DontRequireReceiver);
     }
 
     public void SetTxtPage()

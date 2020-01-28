@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public UIManager uiManager;
 
+    public Stage curStage;
+
     private static GameManager _instance;
     public static GameManager Instance
     {

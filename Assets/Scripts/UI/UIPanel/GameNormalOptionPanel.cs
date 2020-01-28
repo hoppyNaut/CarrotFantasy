@@ -19,6 +19,7 @@ public class GameNormalOptionPanel : BasePanel
         if(isInBigLevel)
         {
             //返回主界面
+            mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
             mUIFacade.ChangeSceneState(new MainSceneState(mUIFacade));
         }
         else
