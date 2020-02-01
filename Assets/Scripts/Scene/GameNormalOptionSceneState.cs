@@ -9,6 +9,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameNormalOptionSceneState : BaseSceneState
 {
@@ -23,11 +24,13 @@ public class GameNormalOptionSceneState : BaseSceneState
         mUIFacade.AddPanelToDict(Constant.GameNormalBigLevelPanel);
         mUIFacade.AddPanelToDict(Constant.HelpPanel);
         mUIFacade.AddPanelToDict(Constant.GameLoadPanel);
+
         base.OnEnterScene();
     }
 
     public override void OnExitScene()
     {
         base.OnExitScene();
+        SceneManager.LoadScene(Constant.NormalModeSceneIndex);
     }
 }

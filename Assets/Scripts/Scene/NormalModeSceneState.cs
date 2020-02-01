@@ -15,4 +15,17 @@ public class NormalModeSceneState : BaseSceneState
     public NormalModeSceneState(UIFacade uiFacade) : base(uiFacade)
     {
     }
+
+    public override void OnEnterScene()
+    {
+        mUIFacade.AddPanelToDict(Constant.GameLoadPanel);
+        mUIFacade.AddPanelToDict(Constant.NormalModePanel);
+
+        base.OnEnterScene();
+    }
+
+    public override void OnExitScene()
+    {
+        base.OnExitScene();
+    }
 }
