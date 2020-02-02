@@ -2,6 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
+public class BigLevelItemInfo
+{
+    public int itemNum_Total;
+    //不同大小道具的最大索引号
+    public int itemIndex_2x2;
+    public int itemIndex_1x2;
+    public int itemIndex_1x1;
+}
+
 public class MapMaker : MonoBehaviour
 {
     public bool isDrawLine;//是否绘制线条
@@ -11,11 +21,21 @@ public class MapMaker : MonoBehaviour
     private float mapWidth;//地图宽度
     private float mapHeight;//地图高度
 
-    private float gridWidth;//格子宽度
-    private float gridHeight;//格子高度
+    public float gridWidth;//格子宽度
+    public float gridHeight;//格子高度
 
     public const int yRow = 8;
     public const int xColumn = 12;
+
+    //当前关卡索引
+    public int bigLevelID;
+    public int levelID;
+
+    //怪物路点索引列表
+    public List<GridIndex> monsterPathList;
+
+    //大关卡道具信息
+    public List<BigLevelItemInfo> bigLevelInfoItemList;
 
     private static MapMaker _instance;
 
@@ -30,9 +50,15 @@ public class MapMaker : MonoBehaviour
         InitMap();
     }
 
+    public BigLevelItemInfo GetCurBigLevelItemInfo()
+    {
+        return bigLevelInfoItemList[bigLevelID - 1];
+    }
+
     //初始化地图
     public void InitMap()
     {
+        monsterPathList = new List<GridIndex>();
         CalculateSize();
         for(int x = 0; x < xColumn; x++)
         {
@@ -41,6 +67,9 @@ public class MapMaker : MonoBehaviour
                 GameObject itemGo = Instantiate(gridGo, transform.position, transform.rotation);
                 itemGo.transform.position = CorrectPosition(new Vector3(x * gridWidth,  y * gridHeight , 0));
                 itemGo.transform.SetParent(transform);
+                //设置格子索引
+                itemGo.GetComponent<GridPoint>().SetGridIndex(x, y);
+                
             }
         }
     }
@@ -64,7 +93,7 @@ public class MapMaker : MonoBehaviour
 
         gridWidth = mapWidth / xColumn;
         gridHeight = mapHeight / yRow;
-        Debug.Log(string.Format("地图宽度:{0} 地图高度:{1} 格子宽度:{2} 格子高度:{3}", mapWidth, mapHeight, gridWidth, gridHeight));
+        //Debug.Log(string.Format("地图宽度:{0} 地图高度:{1} 格子宽度:{2} 格子高度:{3}", mapWidth, mapHeight, gridWidth, gridHeight));
     }
 
     //绘制格子(辅助设计)

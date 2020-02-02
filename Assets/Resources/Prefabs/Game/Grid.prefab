@@ -93,6 +93,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3884cf2866c7adb4ea0299f484142898, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemPrefabs:
+  - {fileID: 2962824372102173881, guid: 7b8c4e1f4d3d02848bb6b7cd3526efff, type: 3}
+  - {fileID: 1195341047881717927, guid: 264f2b684aa20284088f9f87c020d388, type: 3}
+  - {fileID: 6853540628244955617, guid: fc5d4e0b4302620418ac55c28b82eacf, type: 3}
+  - {fileID: 420574222200548970, guid: 4bcee02892aeeec42b171786b0b4f4a0, type: 3}
+  - {fileID: 7181326586831158225, guid: 624f9b22dea275547a714954be4a2e56, type: 3}
+  - {fileID: 1580530956971411108, guid: 93f49f58b731b4446aca1c90c60f2af8, type: 3}
+  - {fileID: 2919131252110662818, guid: 1c7525b9bb77aa94aa9340033f2a262d, type: 3}
+  - {fileID: 8880129594196304426, guid: ee7e5cdcff1986a4bb9258ba4e1f0f9f, type: 3}
+  - {fileID: 6089509901354953635, guid: a403f2b600bd1c64daf06a8a40f681bf, type: 3}
+  - {fileID: 3016234509465194016, guid: e2b1be8cf86d92d4eadb36959cd9c000, type: 3}
+  curItem: {fileID: 0}
 --- !u!65 &971316774
 BoxCollider:
   m_ObjectHideFlags: 0
