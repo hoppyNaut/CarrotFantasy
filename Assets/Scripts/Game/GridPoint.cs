@@ -12,26 +12,28 @@ public enum GridType {
     MonsterPath, //怪物路径格
 }
 
-//格子状态
-public struct GridState
-{
-    public bool canBuild;       //是否能建塔
-    public bool isMonsterPoint;     //是否是怪物路径
-    public bool hasItem;    //是否有道具
-    //public GridType gridType;
-    public int itemID;      //道具ID
-}
 
-//格子索引 
-public struct GridIndex
-{
-    public int xIndex;
-    public int yIndex;
-}
 
 
 public class GridPoint : MonoBehaviour
 {
+    //格子状态
+    public struct GridState
+    {
+        public bool canBuild;       //是否能建塔
+        public bool isMonsterPoint;     //是否是怪物路径
+        public bool hasItem;    //是否有道具
+                                //public GridType gridType;
+        public int itemID;      //道具ID
+    }
+
+    //格子索引 
+    public struct GridIndex
+    {
+        public int xIndex;
+        public int yIndex;
+    }
+
     private SpriteRenderer spriteRenderer;
 
     private Sprite gridSprite;
@@ -67,6 +69,7 @@ public class GridPoint : MonoBehaviour
     public void InitGrid()
     {
         spriteRenderer.enabled = true;
+        spriteRenderer.sprite = gridSprite;
         gridState.itemID = -1;
         gridState.canBuild = true;
         gridState.isMonsterPoint = false;
