@@ -23,11 +23,12 @@ public class GridPoint : MonoBehaviour
         public bool canBuild;       //是否能建塔
         public bool isMonsterPoint;     //是否是怪物路径
         public bool hasItem;    //是否有道具
-                                //public GridType gridType;
-        public int itemID;      //道具ID
+        //public GridType gridType;
+        public int itemID;      //道具ID 
     }
 
     //格子索引 
+    [System.Serializable]
     public struct GridIndex
     {
         public int xIndex;
@@ -70,10 +71,12 @@ public class GridPoint : MonoBehaviour
     {
         spriteRenderer.enabled = true;
         spriteRenderer.sprite = gridSprite;
-        gridState.itemID = -1;
         gridState.canBuild = true;
         gridState.isMonsterPoint = false;
         gridState.hasItem = false;
+
+        gridState.itemID = -1;
+        Destroy(curItem);
     }
 
     public void SetGridIndex(int x,int y)
@@ -81,6 +84,7 @@ public class GridPoint : MonoBehaviour
         gridIndex.xIndex = x;
         gridIndex.yIndex = y;
     }
+
 
     //OnMouseXXXX类型API只作用于鼠标左键
     private void OnMouseDown()
@@ -134,6 +138,7 @@ public class GridPoint : MonoBehaviour
                 CreateItem();
             }
             gridState.hasItem = true;
+            gridState.canBuild = true;
             //spriteRenderer.enabled = false;
         }
         else if(!gridState.isMonsterPoint)
@@ -168,6 +173,31 @@ public class GridPoint : MonoBehaviour
         GameObject item = Instantiate(itemPrefabs[gridState.itemID], createPos, Quaternion.identity);
         item.transform.SetParent(this.transform);
         curItem = item;
+    }
+
+    //更新格子状态
+    public void UpdateGrid()
+    {
+        if(gridState.canBuild)
+        {
+            spriteRenderer.enabled = true;
+            spriteRenderer.sprite = gridSprite;
+            if (gridState.hasItem)
+            {
+                CreateItem();
+            }
+        }
+        else
+        {
+            if(gridState.isMonsterPoint)
+            {
+                spriteRenderer.sprite = monsterPathSprite;
+            }
+            else
+            {
+                spriteRenderer.enabled = false;
+            }
+        }
     }
     
 }

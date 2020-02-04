@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using LitJson;
+using System;
 
 [System.Serializable]
 public class BigLevelItemInfo
@@ -40,6 +41,9 @@ public class MapMaker : MonoBehaviour
     //当前关卡索引
     public int bigLevelID;
     public int levelID;
+    //背景图和关卡图
+    public int bgSprite;
+    public int roadSprite;
 
     //怪物路点索引列表
     public List<GridPoint.GridIndex> monsterPathList;
@@ -179,6 +183,8 @@ public class MapMaker : MonoBehaviour
     {
         bigLevelID = 0;
         levelID = 0;
+        bgSprite = -1;
+        roadSprite = -1;
         RecoverTowerPoint();
         roundInfoList.Clear();
         sr_Bg.sprite = null;
@@ -192,13 +198,15 @@ public class MapMaker : MonoBehaviour
         {
             bigLevelID = bigLevelID,
             levelID = levelID,
+            bgSprite = bgSprite,
+            roadSprite = roadSprite,
         };
-        levelInfo.gridPoints = new GridPoint.GridState[xColumn, yRow];
+        levelInfo.gridPoints = new List<GridPoint.GridState>();
         for(int x = 0; x < xColumn; x++)
         {
             for(int y = 0; y < yRow; y++)
             {
-                levelInfo.gridPoints[x, y] = gridPoints[x, y].gridState;
+                levelInfo.gridPoints.Add(gridPoints[x, y].gridState);
             }
         }
         levelInfo.monsterPath = new List<GridPoint.GridIndex>();
@@ -226,5 +234,50 @@ public class MapMaker : MonoBehaviour
         writer.Close();
     }
 
+    //读取指定关卡数据文件
+    public LevelInfo LoadLevelInfoByJson(string fileName)
+    {
+        LevelInfo levelInfo = new LevelInfo();
+        string filePath = Application.dataPath + "/Resources/Json/Level/" + fileName;
+        if(File.Exists(filePath))
+        {
+            StreamReader reader = new StreamReader(filePath);
+            string jsonStr = reader.ReadToEnd();
+            reader.Close();
+
+            levelInfo = JsonMapper.ToObject<LevelInfo>(jsonStr);
+           
+            return levelInfo;  
+        }
+        else
+        {
+            Debug.Log("目标文件不存在");
+            return null;
+        }
+    }
+
+    //根据读取的关卡数据文件进行初始化
+    public void InitLevelInfo(string fileName)
+    {
+        LevelInfo levelInfo = LoadLevelInfoByJson(fileName);
+        bigLevelID = levelInfo.bigLevelID;
+        levelID = levelInfo.levelID;
+        bgSprite = levelInfo.bgSprite;
+        roadSprite = levelInfo.roadSprite;
+        for(int x = 0; x < xColumn; x++)
+            for(int y = 0; y < yRow; y++)
+            {
+                gridPoints[x, y].gridState = levelInfo.gridPoints[y + x * yRow];
+                //更新格子状态
+                gridPoints[x, y].UpdateGrid();
+            }
+        monsterPathList.Clear();
+        monsterPathList = levelInfo.monsterPath;
+        roundInfoList.Clear();
+        roundInfoList = levelInfo.roundInfo;
+
+        sr_Bg.sprite = Resources.Load<Sprite>("Sprites/NormalMordel/Game/" + bigLevelID.ToString() + "/" + "BG" + bgSprite.ToString());
+        sr_Road.sprite = Resources.Load<Sprite>("Sprites/NormalMordel/Game/" + bigLevelID.ToString() + "/" + "Road" + roadSprite.ToString());
+    }
     #endregion
 }

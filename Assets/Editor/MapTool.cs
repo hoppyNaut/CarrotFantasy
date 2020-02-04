@@ -26,21 +26,28 @@ public class MapTool : Editor
             mapMaker = MapMaker.Instance;
 
             EditorGUILayout.BeginHorizontal();
-            LoadLevelFiles();
             //下拉列表
-            int currentIndex = EditorGUILayout.Popup(selectIndex, fileNameList);
-            if (currentIndex != selectIndex)
+            if(fileNameList != null)
             {
-                selectIndex = currentIndex;
+                int currentIndex = EditorGUILayout.Popup(selectIndex, fileNameList);
+                if (currentIndex != selectIndex)
+                {
+                    selectIndex = currentIndex;
 
-                //实例化地图
-                mapMaker.InitMap();
-                //加载当前的选择文件
+                    //实例化地图
+                    mapMaker.InitMap();
+                    //加载当前的选择文件
+                    mapMaker.InitLevelInfo(fileNameList[selectIndex]);
+                }
             }
             if (GUILayout.Button("读取关卡文件列表"))
             {
                 //读取关卡列表
                 LoadLevelFiles();
+                foreach (string s in fileNameList)
+                {
+                    Debug.Log(s);
+                }
             }
             EditorGUILayout.EndHorizontal();
 
@@ -58,7 +65,7 @@ public class MapTool : Editor
 
             if(GUILayout.Button("保存当前关卡数据文件"))
             {
-
+                mapMaker.SaveLevelInfoByJson();
             }
         }
     }

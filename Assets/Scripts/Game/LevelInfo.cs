@@ -15,7 +15,10 @@ public class LevelInfo
     public int bigLevelID;
     public int levelID;
 
-    public GridPoint.GridState[,] gridPoints;
+    public int bgSprite;
+    public int roadSprite;
+
+    public List<GridPoint.GridState> gridPoints;
 
     public List<GridPoint.GridIndex> monsterPath;
 

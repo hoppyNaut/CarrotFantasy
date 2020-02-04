@@ -12,6 +12,7 @@ using UnityEngine;
 
 public class Round
 {
+    [System.Serializable]
     public struct RoundInfo
     {
         public int[] mMonsterIDList;

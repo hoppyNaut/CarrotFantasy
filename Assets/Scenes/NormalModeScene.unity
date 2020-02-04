@@ -184,15 +184,20 @@ MonoBehaviour:
   gridHeight: 1.25
   bigLevelID: 1
   levelID: 1
+  bgSprite: 0
+  roadSprite: 0
+  monsterPathList: []
+  monsterPathPosList: []
+  roundInfoList: []
   bigLevelInfoItemList:
   - itemNum_Total: 10
     itemIndex_2x2: 2
     itemIndex_1x2: 4
     itemIndex_1x1: 9
-  - itemNum_Total: 0
-    itemIndex_2x2: 0
-    itemIndex_1x2: 0
-    itemIndex_1x1: 0
+  - itemNum_Total: 11
+    itemIndex_2x2: 3
+    itemIndex_1x2: 5
+    itemIndex_1x1: 10
   - itemNum_Total: 0
     itemIndex_2x2: 0
     itemIndex_1x2: 0
@@ -265,7 +270,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4b1b3d55969940f43abca95ce5b03b45, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8995689b65d51d14eb34238956c11ef9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
