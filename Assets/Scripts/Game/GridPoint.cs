@@ -38,17 +38,20 @@ public class GridPoint : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     private Sprite gridSprite;
+    public GridState gridState;
+    public GridIndex gridIndex;
+
+#if Tool
     private Sprite monsterPathSprite;
 
     public GameObject[] itemPrefabs;    //道具游戏物体数组
     public GameObject curItem;  //当前格子持有道具
-
-    public GridState gridState;
-    public GridIndex gridIndex;
+#endif
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+#if Tool
+
         gridSprite = Resources.Load<Sprite>("Sprites/NormalMordel/Game/Grid");
         monsterPathSprite = Resources.Load<Sprite>("Sprites/NormalMordel/Game/monsterPath");
         int itemNum = MapMaker.Instance.bigLevelInfoItemList[MapMaker.Instance.bigLevelID - 1].itemNum_Total;
@@ -63,6 +66,9 @@ public class GridPoint : MonoBehaviour
             }
         }
 
+#endif
+
+        spriteRenderer = GetComponent<SpriteRenderer>();
         //初始化格子状态
         InitGrid();
     }
@@ -70,14 +76,18 @@ public class GridPoint : MonoBehaviour
     public void InitGrid()
     {
         spriteRenderer.enabled = true;
-        spriteRenderer.sprite = gridSprite;
         gridState.canBuild = true;
         gridState.isMonsterPoint = false;
         gridState.hasItem = false;
-
         gridState.itemID = -1;
+
+#if Tool
+
+        spriteRenderer.sprite = gridSprite;
         Destroy(curItem);
-    }
+
+#endif
+        }
 
     public void SetGridIndex(int x,int y)
     {
@@ -85,7 +95,35 @@ public class GridPoint : MonoBehaviour
         gridIndex.yIndex = y;
     }
 
+#if Game
+    //更新格子状态
+    public void UpdateGrid()
+    {
+        if(gridState.canBuild)
+        {
+            spriteRenderer.enabled = true;
+            if(gridState.hasItem)
+            {
+                CreateItem();
+            }
+        }
+        else
+        {
+            spriteRenderer.enabled = false;
+        }
+    }
 
+    //创建道具
+    private void CreateItem()
+    {
+        GameObject itemGo = GameController.Instance.GetGameObjectResource
+            (GameController.Instance.mapMaker.bigLevelID.ToString() + "/Item/" + gridState.itemID.ToString());
+        itemGo.transform.SetParent(GameController.Instance.transform);
+    }
+#endif
+
+
+#if Tool
     //OnMouseXXXX类型API只作用于鼠标左键
     private void OnMouseDown()
     {
@@ -156,6 +194,8 @@ public class GridPoint : MonoBehaviour
         }
     }
 
+
+
     //生成道具
     private void CreateItem()
     {
@@ -199,5 +239,5 @@ public class GridPoint : MonoBehaviour
             }
         }
     }
-    
+#endif
 }

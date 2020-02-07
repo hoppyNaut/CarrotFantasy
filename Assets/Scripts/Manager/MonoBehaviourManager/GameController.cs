@@ -12,15 +12,58 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private static GameController _instance;
+
+    public static GameController Instance
     {
-        
+        get { return _instance; }
     }
 
-    // Update is called once per frame
-    void Update()
+    public Level curLevel;
+    public Stage curStage;
+    public NormalModePanel normalModePanel;
+    public MapMaker mapMaker;
+
+    private GameManager gameManager;
+
+    private void Awake()
     {
-        
+#if Game
+        _instance = this;
+        gameManager = GameManager.Instance;
+        curStage = gameManager.curStage;
+        normalModePanel = gameManager.uiManager.mUIFacade.GetCurScenePanel(Constant.NormalModePanel) as NormalModePanel;
+        mapMaker = transform.GetComponent<MapMaker>();
+        mapMaker.Init();
+        mapMaker.LoadMap(curStage.mBigLevelID,curStage.mLevelID);
+#endif
     }
+
+
+    #region 资源获取有关方法
+    public Sprite GetSprite(string path)
+    {
+        return gameManager.GetSprite(path);
+    }
+
+    public AudioClip GetAudioClip(string path)
+    {
+        return gameManager.GetAudioClip(path);
+    }
+
+    public RuntimeAnimatorController GetRuntimeAnimatorController(string path)
+    {
+        return gameManager.GetRuntimeAnimatorController(path);
+    }
+
+    public GameObject GetGameObjectResource( string name)
+    {
+        return gameManager.GetGameObjectResource(FactoryType.GameFactory, name);
+    }
+
+    public void PushGameObjectToFactory(string name, GameObject go)
+    {
+        gameManager.PushGameObjectToFactory(FactoryType.GameFactory, name, go);
+    }
+    #endregion
 }

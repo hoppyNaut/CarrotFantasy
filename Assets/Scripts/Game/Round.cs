@@ -18,5 +18,37 @@ public class Round
         public int[] mMonsterIDList;
     }
 
+    protected int roundID;
+    protected Round nextRound;
+    //当前怪物波次所对应的关卡
+    protected Level level;
     public RoundInfo roundInfo;
+    
+
+    public Round(int roundID, RoundInfo roundInfo,Level level)
+    {
+        this.roundID = roundID;
+        this.level = level;
+        this.roundInfo = roundInfo;
+    }
+
+    public Round SetNextRound(Round nextRound)
+    {
+        this.nextRound = nextRound;
+        return this.nextRound;
+    }
+
+    public void Handle(int curRoundID)
+    {
+        if(roundID < curRoundID)
+        {
+            nextRound.Handle(curRoundID);
+            level.AddRoundNum();
+        }
+        else
+        {
+            //产生怪物TODO
+        }
+
+    }
 }

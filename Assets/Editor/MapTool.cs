@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+#if Tool
+
 [CustomEditor(typeof(MapMaker))]
 public class MapTool : Editor
 {
@@ -110,3 +112,5 @@ public class MapTool : Editor
         return names.ToArray();
     }
 }
+
+#endif
