@@ -78,6 +78,7 @@
     <Compile Include="Assets\Scripts\Game\Carrot.cs" />
     <Compile Include="Assets\Scripts\Game\Constant.cs" />
     <Compile Include="Assets\Scripts\Game\GridPoint.cs" />
+    <Compile Include="Assets\Scripts\Game\Item.cs" />
     <Compile Include="Assets\Scripts\Game\Level.cs" />
     <Compile Include="Assets\Scripts\Game\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game\MapMaker.cs" />

@@ -322,7 +322,7 @@ public class MapMaker : MonoBehaviour
 #endif
 
 #if Game
-
+                gridPoints[x, y].UpdateGrid();
 #endif
             }
         monsterPathList.Clear();
