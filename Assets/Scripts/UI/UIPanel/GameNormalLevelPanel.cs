@@ -204,7 +204,7 @@ public class GameNormalLevelPanel : BasePanel
             index += playerManager.totalNormalModeLevelNumList[i];
         }
         index += (levelID - 1);
-        Debug.Log("Index:" + index);
+
         Stage curStage = playerManager.NormalModeLevelInfoList[index];
         return curStage;
     }

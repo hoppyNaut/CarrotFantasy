@@ -47,7 +47,9 @@ public class Round
         }
         else
         {
-            //产生怪物TODO
+            //产生怪物
+            GameController.Instance.monsterIDList = roundInfo.mMonsterIDList;
+            GameController.Instance.CreateMonster();
         }
 
     }

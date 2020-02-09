@@ -75,6 +75,8 @@
     <Compile Include="Assets\Scripts\Factory\Test\PoolTest.cs" />
     <Compile Include="Assets\Scripts\Factory\UIFactory.cs" />
     <Compile Include="Assets\Scripts\Factory\UIPanelFactory.cs" />
+    <Compile Include="Assets\Scripts\Game\Builder\IBuilder.cs" />
+    <Compile Include="Assets\Scripts\Game\Builder\MonsterBuilder.cs" />
     <Compile Include="Assets\Scripts\Game\Carrot.cs" />
     <Compile Include="Assets\Scripts\Game\Constant.cs" />
     <Compile Include="Assets\Scripts\Game\GridPoint.cs" />
@@ -82,6 +84,7 @@
     <Compile Include="Assets\Scripts\Game\Level.cs" />
     <Compile Include="Assets\Scripts\Game\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game\MapMaker.cs" />
+    <Compile Include="Assets\Scripts\Game\Monster.cs" />
     <Compile Include="Assets\Scripts\Game\Round.cs" />
     <Compile Include="Assets\Scripts\Game\Stage.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameController.cs" />

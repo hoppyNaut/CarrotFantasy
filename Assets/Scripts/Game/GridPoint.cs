@@ -122,7 +122,7 @@ public class GridPoint : MonoBehaviour
 
         Vector3 createPos = transform.position - new Vector3(0, 0, 3);
         BigLevelItemInfo curItemInfo = GameController.Instance.mapMaker.GetCurBigLevelItemInfo();
-        Debug.Log(curItemInfo.itemIndex_2x2);
+
         if (gridState.itemID >= 0 && gridState.itemID <= curItemInfo.itemIndex_2x2)
         {
             createPos += new Vector3(GameController.Instance.mapMaker.gridWidth / 2, -GameController.Instance.mapMaker.gridHeight / 2);

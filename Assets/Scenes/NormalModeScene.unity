@@ -168,6 +168,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   normalModePanel: {fileID: 0}
   mapMaker: {fileID: 0}
+  monsterIDList: 
+  monsterIDIndex: 0
+  animatorControllerList: []
+  curRoundKillMonsterNum: 0
+  totalKillMonsterNum: 0
+  destroyItemNum: 0
+  carrotHp: 10
+  coin: 0
+  gameSpeed: 0
+  isGamePause: 0
+  targetTrans: {fileID: 0}
+  targetSignal: {fileID: 0}
+  selectGrid: {fileID: 0}
+  creatingMonster: 0
+  isGameOver: 0
+  towerList: []
+  handleTowerCanvas: {fileID: 0}
 --- !u!114 &129584143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -535,6 +552,95 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1833891979
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2036872617533080742, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_Name
+      value: Monster
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.53
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2036872617533080740, guid: 44c88d5d82cd099438f527f9c152cc38,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2105177581, guid: 44c88d5d82cd099438f527f9c152cc38, type: 3}
+      propertyPath: m_Name
+      value: HpSlider
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498297813, guid: 44c88d5d82cd099438f527f9c152cc38, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.06804657
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498297813, guid: 44c88d5d82cd099438f527f9c152cc38, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.4985423
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387254568, guid: 44c88d5d82cd099438f527f9c152cc38, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1387254568, guid: 44c88d5d82cd099438f527f9c152cc38, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 44c88d5d82cd099438f527f9c152cc38, type: 3}
 --- !u!1 &1901233899
 GameObject:
   m_ObjectHideFlags: 0

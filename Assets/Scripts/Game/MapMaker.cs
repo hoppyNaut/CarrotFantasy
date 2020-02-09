@@ -90,7 +90,7 @@ public class MapMaker : MonoBehaviour
         _instance = this;
 #endif
 
-        Init();
+        //Init();
 
     }
 
