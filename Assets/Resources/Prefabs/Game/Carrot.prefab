@@ -86,8 +86,8 @@ GameObject:
   - component: {fileID: 4335285930710205270}
   - component: {fileID: 4335285930710205271}
   - component: {fileID: 4335285930710205269}
-  - component: {fileID: 4335285930710205268}
   - component: {fileID: 4335285930710205267}
+  - component: {fileID: 4387426315596521815}
   m_Layer: 0
   m_Name: Carrot
   m_TagString: Untagged
@@ -146,7 +146,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 4
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 086b77e9baa302b49a4876f7b24e78c9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -170,19 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19278c73b21792a4bb80590b3739fffa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!65 &4335285930710205268
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4335285930710205256}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.74999994, y: 1.0599998, z: 0.19999999}
-  m_Center: {x: 0, y: 0, z: 0}
+  txt_Hp: {fileID: 0}
 --- !u!95 &4335285930710205267
 Animator:
   serializedVersion: 3
@@ -202,6 +190,32 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!61 &4387426315596521815
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4335285930710205256}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.75, y: 1.06}
+    newSize: {x: 0.75, y: 1.06}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.75, y: 1.06}
+  m_EdgeRadius: 0
 --- !u!1 &4335285930965523273
 GameObject:
   m_ObjectHideFlags: 0
@@ -260,7 +274,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 6
   m_TargetDisplay: 0
 --- !u!114 &4335285930965523287
 MonoBehaviour:

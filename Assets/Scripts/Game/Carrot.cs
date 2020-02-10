@@ -1,18 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Carrot : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Text txt_Hp;
+
+    private void Awake()
     {
-        
+        txt_Hp = transform.Find("HpCanvas").Find("Image").Find("txt_Hp").GetComponent<Text>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetHp(int hp)
     {
-        
+        txt_Hp.text = hp.ToString();
     }
 }

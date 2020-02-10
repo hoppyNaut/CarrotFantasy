@@ -106,7 +106,7 @@ public class GameController : MonoBehaviour
     private void Update()
     {
 #if Game
-        Debug.Log(mapMaker.monsterPathPosList.Count);
+
         if (!isGamePause)
         {
             //产怪
@@ -132,6 +132,27 @@ public class GameController : MonoBehaviour
 #endif
     }
 
+    #region 数据处理方法
+    public void AddKillCount()
+    {
+        curRoundKillMonsterNum++;
+        totalKillMonsterNum++;
+        //更新UI显示TODO
+    }
+
+    public void AddCoin(int prize)
+    {
+        coin += prize;
+        //更新UI显示TODO
+    }
+
+    public void DecreaseCarrotHp()
+    {
+        carrotHp -= 1;
+        mapMaker.carrot.SetHp(carrotHp);
+    }
+    #endregion
+
     #region 建造者方法
     public void CreateMonster()
     {
@@ -141,7 +162,6 @@ public class GameController : MonoBehaviour
 
     private void InstantiateMonster()
     {
-       
         //产生特效
         GameObject effectGo = GetGameObjectResource("CreateEffect");
         effectGo.transform.SetParent(transform);

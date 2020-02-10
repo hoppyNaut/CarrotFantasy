@@ -234,6 +234,7 @@ public class MapMaker : MonoBehaviour
         GameObject endPointGo = GameController.Instance.GetGameObjectResource("Carrot");
         endPointGo.transform.position = monsterPathPosList[monsterPathPosList.Count - 1];
         endPointGo.transform.SetParent(this.transform);
+        carrot = endPointGo.GetComponent<Carrot>();
     }
 #endif
 

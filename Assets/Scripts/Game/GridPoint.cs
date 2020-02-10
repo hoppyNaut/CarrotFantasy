@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using LitJson;
+using DG.Tweening;
 
 //格子种类
 public enum GridType {
@@ -11,9 +12,6 @@ public enum GridType {
     Item,       //道具格
     MonsterPath, //怪物路径格
 }
-
-
-
 
 public class GridPoint : MonoBehaviour
 {
@@ -35,11 +33,18 @@ public class GridPoint : MonoBehaviour
         public int yIndex;
     }
 
+    private GameController gameController;
+
     private SpriteRenderer spriteRenderer;
 
     private Sprite gridSprite;
+    private Sprite startSprite;//开始时格子显示的图片
+    private Sprite cantBuildSprite;
+
     public GridState gridState;
     public GridIndex gridIndex;
+
+    public bool hasTower;
 
 #if Tool
     private Sprite monsterPathSprite;
@@ -71,7 +76,21 @@ public class GridPoint : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         //初始化格子状态
         InitGrid();
+
+#if Game
+        hasTower = false;
+        gameController = GameController.Instance;
+        gridSprite = gameController.GetSprite("NormalMordel/Game/Grid");
+        startSprite = gameController.GetSprite("NormalMordel/Game/StartSprite");
+        cantBuildSprite = gameController.GetSprite("NormalMordel/Game/cantBuild");
+        spriteRenderer.sprite = startSprite;
+        Tween tween = DOTween.To(() => spriteRenderer.color, toColor => spriteRenderer.color = toColor, new Color(1, 1, 1, 0), 3);
+        tween.OnComplete(ChangeSpriteToGrid);
+
+#endif
     }
+
+
 
     public void InitGrid()
     {
@@ -96,6 +115,21 @@ public class GridPoint : MonoBehaviour
     }
 
 #if Game
+
+    private void ChangeSpriteToGrid()
+    {
+        spriteRenderer.enabled = false;
+        spriteRenderer.color = new Color(1, 1, 1, 1);
+        if (gridState.canBuild)
+        {
+            spriteRenderer.sprite = gridSprite;
+        }
+        else
+        {
+            spriteRenderer.sprite = cantBuildSprite;
+        }
+    }
+
     //更新格子状态
     public void UpdateGrid()
     {
@@ -111,6 +145,39 @@ public class GridPoint : MonoBehaviour
         {
             spriteRenderer.enabled = false;
         }
+    }
+
+    private void ShowGrid()
+    {
+        if(!hasTower)
+        {
+            spriteRenderer.enabled = true;
+            //显示建塔列表TODO
+        }
+        else
+        {
+
+        }
+    }
+
+    private void HideGrid()
+    {
+        if(!hasTower)
+        {
+            //隐藏建塔列表TODO
+        }
+        else
+        {
+
+        }
+        spriteRenderer.enabled = false;
+    }
+
+    private void ShowCantBuild()
+    {
+        spriteRenderer.enabled = true;
+        Tween tween = DOTween.To(() => spriteRenderer.color, toColor => spriteRenderer.color = toColor, new Color(1, 1, 1, 0), 2);
+        tween.OnComplete(() => { spriteRenderer.enabled = false; spriteRenderer.color = new Color(1, 1, 1, 1); });
     }
 
     //创建道具
@@ -134,6 +201,35 @@ public class GridPoint : MonoBehaviour
         itemGo.transform.position = createPos;
         itemGo.GetComponent<Item>().gridPoint = this;
     }
+
+    private void OnMouseDown()
+    {
+        //如果点击的是UI不交互
+        if(EventSystem.current.IsPointerOverGameObject())
+        {
+            return;
+        }
+
+        if(gridState.canBuild)
+        {
+            if(gameController.selectGrid != null)
+            {
+                gameController.selectGrid.HideGrid();
+            }
+            gameController.selectGrid = this;
+            ShowGrid();
+        }
+        else
+        {
+            if (gameController.selectGrid != null)
+            {
+                gameController.selectGrid.HideGrid();
+            }
+            gameController.selectGrid = null;
+            ShowCantBuild();
+        }
+    }
+
 #endif
 
 

@@ -12,7 +12,7 @@ public class MonsterBuilder : IBuilder<Monster>
     {
         productClass.monsterID = monsterID;
         productClass.hp = monsterID * 100;
-        productClass.curHp = productClass.hp;
+        productClass.CurHp = productClass.hp;
         productClass.moveSpeed = monsterID;
         productClass.prize = monsterID * 50;
     }
