@@ -34,6 +34,13 @@ public class GridPoint : MonoBehaviour
     }
 
     private GameController gameController;
+    //建塔列表
+    private GameObject towerListGo;
+    private GameObject handleTowerCanvasGo;
+    private Transform btnUpLevelTrans;
+    private Transform btnSellTrans;
+    private Vector3 btnUpLevelInitPos;
+    private Vector3 btnSellInitPos;
 
     private SpriteRenderer spriteRenderer;
 
@@ -79,7 +86,15 @@ public class GridPoint : MonoBehaviour
 
 #if Game
         hasTower = false;
+
         gameController = GameController.Instance;
+        towerListGo = gameController.towerList;
+        handleTowerCanvasGo = gameController.handleTowerCanvas;
+        btnUpLevelTrans = handleTowerCanvasGo.transform.Find("Btn_UpLevel");
+        btnSellTrans = handleTowerCanvasGo.transform.Find("Btn_Sell");
+        btnUpLevelInitPos = btnUpLevelTrans.localPosition;
+        btnSellInitPos = btnSellTrans.localPosition;
+
         gridSprite = gameController.GetSprite("NormalMordel/Game/Grid");
         startSprite = gameController.GetSprite("NormalMordel/Game/StartSprite");
         cantBuildSprite = gameController.GetSprite("NormalMordel/Game/cantBuild");
@@ -130,6 +145,7 @@ public class GridPoint : MonoBehaviour
         }
     }
 
+    #region 格子处理方法
     //更新格子状态
     public void UpdateGrid()
     {
@@ -147,28 +163,36 @@ public class GridPoint : MonoBehaviour
         }
     }
 
-    private void ShowGrid()
+    //显示格子
+    public void ShowGrid()
     {
         if(!hasTower)
         {
             spriteRenderer.enabled = true;
-            //显示建塔列表TODO
+            //显示建塔列表
+            towerListGo.transform.position = CorrectTowerListGoPos();
+            towerListGo.SetActive(true);
+           
         }
         else
         {
-
+            handleTowerCanvasGo.transform.position = transform.position;
+            CorrectHandleTowerCanvas();
+            handleTowerCanvasGo.SetActive(true);
         }
     }
 
-    private void HideGrid()
+    //隐藏格子
+    public void HideGrid()
     {
         if(!hasTower)
         {
-            //隐藏建塔列表TODO
+            //隐藏建塔列表
+            towerListGo.SetActive(false);
         }
         else
         {
-
+            handleTowerCanvasGo.SetActive(false);
         }
         spriteRenderer.enabled = false;
     }
@@ -179,6 +203,14 @@ public class GridPoint : MonoBehaviour
         Tween tween = DOTween.To(() => spriteRenderer.color, toColor => spriteRenderer.color = toColor, new Color(1, 1, 1, 0), 2);
         tween.OnComplete(() => { spriteRenderer.enabled = false; spriteRenderer.color = new Color(1, 1, 1, 1); });
     }
+
+    public void FinishBuildTower()
+    {
+        spriteRenderer.enabled = false;
+        //对塔的后续处理
+    }
+
+    #endregion
 
     //创建道具
     private void CreateItem()
@@ -212,12 +244,23 @@ public class GridPoint : MonoBehaviour
 
         if(gridState.canBuild)
         {
-            if(gameController.selectGrid != null)
+            if(gameController.selectGrid == null)
+            {
+                gameController.selectGrid = this;
+                ShowGrid();
+            }
+            else if (gameController.selectGrid == this)//如果点击已被选中的格子
             {
                 gameController.selectGrid.HideGrid();
+                gameController.selectGrid = null;
             }
-            gameController.selectGrid = this;
-            ShowGrid();
+            else if(gameController.selectGrid != this)
+            {
+                gameController.selectGrid.HideGrid();
+                gameController.selectGrid = this;
+                ShowGrid();
+            }
+
         }
         else
         {
@@ -227,6 +270,66 @@ public class GridPoint : MonoBehaviour
             }
             gameController.selectGrid = null;
             ShowCantBuild();
+        }
+    }
+
+    //设置建塔列表的位置
+    private Vector3 CorrectTowerListGoPos()
+    {
+        Vector3 correctPos = Vector3.zero;
+        if(gridIndex.xIndex <= 3 && gridIndex.xIndex >= 0)
+        {
+            correctPos += new Vector3(gameController.mapMaker.gridWidth, 0, 0);
+        }
+        else if (gridIndex.xIndex <= 11 && gridIndex.xIndex >= 8)
+        {
+            correctPos -= new Vector3(gameController.mapMaker.gridWidth, 0, 0);
+        }
+        if (gridIndex.yIndex <= 3 && gridIndex.yIndex >= 0)
+        {
+            correctPos += new Vector3(0, gameController.mapMaker.gridHeight, 0);
+        }
+        else if (gridIndex.yIndex <= 7 && gridIndex.yIndex >= 4)
+        {
+            correctPos -= new Vector3(0, gameController.mapMaker.gridHeight, 0);
+        }
+        correctPos += transform.position;
+        return correctPos;
+    }
+
+    //设置升级画布按钮位置
+    private void CorrectHandleTowerCanvas()
+    {
+        btnUpLevelTrans.localPosition = Vector3.zero;
+        btnSellTrans.localPosition = Vector3.zero;
+        if(gridIndex.yIndex <= 0)
+        {
+            if(gridIndex.xIndex >=0 && gridIndex.xIndex <= 5)
+            {
+                btnSellTrans.position += new Vector3(gameController.mapMaker.gridWidth * 3/4, 0, 0);
+            }
+            else if(gridIndex.xIndex >= 6 && gridIndex.xIndex <= 11)
+            {
+                btnSellTrans.position -= new Vector3(gameController.mapMaker.gridWidth * 3 / 4, 0, 0);
+            }
+            btnUpLevelTrans.localPosition = btnUpLevelInitPos;
+        }
+        else if(gridIndex.yIndex >= 6)
+        {
+            if (gridIndex.xIndex >= 0 && gridIndex.xIndex <= 5)
+            {
+                btnUpLevelTrans.position += new Vector3(gameController.mapMaker.gridWidth * 3 / 4, 0, 0);
+            }
+            else if (gridIndex.xIndex >= 6 && gridIndex.xIndex <= 11)
+            {
+                btnUpLevelTrans.position -= new Vector3(gameController.mapMaker.gridWidth * 3 / 4, 0, 0);
+            }
+            btnSellTrans.localPosition = btnSellInitPos;
+        }
+        else
+        {
+            btnUpLevelTrans.localPosition = btnUpLevelInitPos;
+            btnSellTrans.localPosition = btnSellInitPos;
         }
     }
 

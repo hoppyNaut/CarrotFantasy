@@ -88,9 +88,8 @@ public class MapMaker : MonoBehaviour
 
 #if Tool
         _instance = this;
+        Init();
 #endif
-
-        //Init();
 
     }
 

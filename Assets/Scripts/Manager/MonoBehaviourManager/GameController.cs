@@ -59,11 +59,12 @@ public class GameController : MonoBehaviour
 
     //建造者
     public MonsterBuilder monsterBuilder;
+    public TowerBuilder towerBuilder;
 
     //建塔价格表
     public Dictionary<int, int> towerPriceDict;
     //建塔按钮列表
-    public List<GameObject> towerList;
+    public GameObject towerList;
     //处理塔相关操作的画布
     public GameObject handleTowerCanvas;
 
@@ -79,6 +80,7 @@ public class GameController : MonoBehaviour
         mapMaker.Init();
         mapMaker.LoadMap(curStage.mBigLevelID,curStage.mLevelID);
         monsterBuilder = new MonsterBuilder();
+        towerBuilder = new TowerBuilder();
 
         animatorControllerList = new RuntimeAnimatorController[12];
         for(int i = 0; i < animatorControllerList.Length; i++)
@@ -91,12 +93,36 @@ public class GameController : MonoBehaviour
         totalKillMonsterNum = 0;
         destroyItemNum = 0;
         carrotHp = 10;
-        coin = 0;
+        coin = 500;
         gameSpeed = 1;
         isGamePause = false;
         creatingMonster = false;
         isGameOver = false;
 
+
+
+        //建塔价格初始化
+        towerPriceDict = new Dictionary<int, int>
+        {
+            { 1,100 },
+            { 2,120 },
+            { 3,140 },
+            { 4,160 },
+            { 5,160 }
+        };
+
+        //建塔列表处理
+
+        for (int i = 0; i < curStage.mTowerIDList.Length; i++)
+        {
+            GameObject towerGo = gameManager.GetGameObjectResource(FactoryType.UIFactory, "Btn_BuildTower");
+            towerGo.GetComponent<BtnTower>().towerID = curStage.mTowerIDList[i];
+            towerGo.GetComponent<BtnTower>().price = towerPriceDict[curStage.mTowerIDList[i]];
+            towerGo.transform.SetParent(towerList.transform);
+            towerGo.transform.localPosition = Vector3.zero;
+            towerGo.transform.localScale = Vector3.one;
+        }
+     
 
         curLevel = new Level(mapMaker.roundInfoList.Count, mapMaker.roundInfoList);
         curLevel.HandleRound();

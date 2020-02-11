@@ -77,15 +77,17 @@
     <Compile Include="Assets\Scripts\Factory\UIPanelFactory.cs" />
     <Compile Include="Assets\Scripts\Game\Builder\IBuilder.cs" />
     <Compile Include="Assets\Scripts\Game\Builder\MonsterBuilder.cs" />
+    <Compile Include="Assets\Scripts\Game\Builder\TowerBuilder.cs" />
     <Compile Include="Assets\Scripts\Game\Carrot.cs" />
     <Compile Include="Assets\Scripts\Game\Constant.cs" />
     <Compile Include="Assets\Scripts\Game\Effect.cs" />
+    <Compile Include="Assets\Scripts\Game\Entity\Monster.cs" />
+    <Compile Include="Assets\Scripts\Game\Entity\Tower.cs" />
     <Compile Include="Assets\Scripts\Game\GridPoint.cs" />
     <Compile Include="Assets\Scripts\Game\Item.cs" />
     <Compile Include="Assets\Scripts\Game\Level.cs" />
     <Compile Include="Assets\Scripts\Game\LevelInfo.cs" />
     <Compile Include="Assets\Scripts\Game\MapMaker.cs" />
-    <Compile Include="Assets\Scripts\Game\Monster.cs" />
     <Compile Include="Assets\Scripts\Game\Round.cs" />
     <Compile Include="Assets\Scripts\Game\Stage.cs" />
     <Compile Include="Assets\Scripts\Manager\MonoBehaviourManager\GameController.cs" />
@@ -119,6 +121,7 @@
     <Compile Include="Assets\Scripts\Test\TestBoxCollider2D.cs" />
     <Compile Include="Assets\Scripts\UI\ScrollViewControllerOne.cs" />
     <Compile Include="Assets\Scripts\UI\ScrollViewControllerTwo.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\BtnTower.cs" />
     <Compile Include="Assets\Scripts\UI\UI\CanvasDontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\UI\UI\CoinMove.cs" />
     <Compile Include="Assets\Scripts\UI\UI\UIFacade.cs" />
