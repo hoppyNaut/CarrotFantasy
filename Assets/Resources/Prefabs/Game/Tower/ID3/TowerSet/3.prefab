@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 4080082225579728}
   - component: {fileID: 58503204696324570}
   - component: {fileID: 2906238397517387720}
+  - component: {fileID: -6019805319502791096}
   m_Layer: 0
   m_Name: 3
   m_TagString: Untagged
@@ -165,6 +166,21 @@ MonoBehaviour:
   towerID: 0
   level: 0
   upLevelCost: 0
+  monsterList: []
+  hasTarget: 0
+--- !u!114 &-6019805319502791096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1171480134383974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18e07680b40b63540b6a342fe69dac50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tower: {fileID: 0}
 --- !u!1 &1192872876514928
 GameObject:
   m_ObjectHideFlags: 0

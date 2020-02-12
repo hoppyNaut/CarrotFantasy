@@ -158,6 +158,26 @@ public class GameController : MonoBehaviour
 #endif
     }
 
+    #region 集火目标处理方法
+    public void ShowSignal()
+    {
+        targetSignal.transform.position = targetTrans.position + new Vector3(0,mapMaker.gridHeight / 2 ,0);
+        targetSignal.transform.SetParent(targetTrans);
+        targetSignal.SetActive(true);
+    }
+
+    public void HideSignal()
+    {
+        targetSignal.SetActive(false);
+        targetTrans = null;
+    }
+
+    public void SetTargetTrans(Transform trans)
+    {
+
+    }
+    #endregion
+
     #region 数据处理方法
     public void AddKillCount()
     {

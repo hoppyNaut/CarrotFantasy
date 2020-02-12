@@ -216,7 +216,7 @@ public class GridPoint : MonoBehaviour
     private void CreateItem()
     {
         GameObject itemGo = GameController.Instance.GetGameObjectResource
-            (GameController.Instance.mapMaker.bigLevelID.ToString() + "/Items/" + gridState.itemID.ToString());
+            (GameController.Instance.mapMaker.bigLevelID.ToString() + "/Item/" + gridState.itemID.ToString());
         itemGo.transform.SetParent(GameController.Instance.transform);
 
         Vector3 createPos = transform.position - new Vector3(0, 0, 3);
