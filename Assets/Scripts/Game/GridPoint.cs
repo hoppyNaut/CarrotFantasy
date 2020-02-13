@@ -16,6 +16,7 @@ public enum GridType {
 public class GridPoint : MonoBehaviour
 {
     //格子状态
+    [System.Serializable]
     public struct GridState
     {
         public bool canBuild;       //是否能建塔
@@ -99,7 +100,7 @@ public class GridPoint : MonoBehaviour
         startSprite = gameController.GetSprite("NormalMordel/Game/StartSprite");
         cantBuildSprite = gameController.GetSprite("NormalMordel/Game/cantBuild");
         spriteRenderer.sprite = startSprite;
-        Tween tween = DOTween.To(() => spriteRenderer.color, toColor => spriteRenderer.color = toColor, new Color(1, 1, 1, 0), 3);
+        Tween tween = DOTween.To(() => spriteRenderer.color, toColor => spriteRenderer.color = toColor, new Color(1, 1, 1, 0), 2);
         tween.OnComplete(ChangeSpriteToGrid);
 
 #endif
@@ -239,9 +240,11 @@ public class GridPoint : MonoBehaviour
         //如果点击的是UI不交互
         if(EventSystem.current.IsPointerOverGameObject())
         {
+            Debug.Log("点击到了UI");
             return;
         }
-
+        Debug.Log("点击到了格子");
+        
         if(gridState.canBuild)
         {
             if(gameController.selectGrid == null)

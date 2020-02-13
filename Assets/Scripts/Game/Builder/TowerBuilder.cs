@@ -11,6 +11,7 @@ public class TowerBuilder : IBuilder<Tower>
     public void GetData(Tower productClass)
     {
         productClass.towerID = towerID;
+        productClass.towerLevel = towerLevel;
     }
 
     public void GetOtherResource(Tower productClass)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Tower : MonoBehaviour
 {
     public int towerID;
+    public int towerLevel;
 
     //是否有攻击目标
     public bool hasTarget;
@@ -71,7 +72,7 @@ public class Tower : MonoBehaviour
     {
         towerProperty.Init();
         Init();
-        gameController.PushGameObjectToFactory("Tower/ID" + towerID.ToString() + "/TowerSet/" + towerProperty.towerLevel.ToString(), gameObject);
+        gameController.PushGameObjectToFactory("Tower/ID" + towerID.ToString() + "/TowerSet/" + towerLevel.ToString(), gameObject);
     }
 
     public void GetTowerResource()
@@ -125,7 +126,7 @@ public class Tower : MonoBehaviour
         else
         {
             //没有攻击目标
-            if(!hasTarget)
+            if(!hasTarget && collision.tag == "Monster")
             {
                 atkTargetTrans = collision.transform;
                 hasTarget = true;
@@ -179,7 +180,7 @@ public class Tower : MonoBehaviour
         else
         {
             //没有攻击目标
-            if (!hasTarget)
+            if (!hasTarget && collision.tag == "Monster")
             {
                 atkTargetTrans = collision.transform;
                 hasTarget = true;

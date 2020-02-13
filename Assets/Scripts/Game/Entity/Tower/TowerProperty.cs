@@ -15,7 +15,7 @@ public class TowerProperty : MonoBehaviour
     [HideInInspector]
     public Tower tower;
 
-    public int towerLevel;
+ 
     //攻击间隔
     public float atkTime;
     //攻击计时器
@@ -46,7 +46,37 @@ public class TowerProperty : MonoBehaviour
 
     protected virtual void Update()
     {
+        if(gameController.isGamePause || tower.atkTargetTrans == null)
+        {
+            return;
+        }
+        if(!tower.atkTargetTrans.gameObject.activeInHierarchy)
+        {
+            tower.atkTargetTrans = null;
+            return;
+        }
+        //旋转
+        if(tower.atkTargetTrans.gameObject.tag == "Item")
+        {
+            transform.LookAt(tower.atkTargetTrans.position+ new Vector3(0,0,3));
+        }
+        else
+        {
+            transform.LookAt(tower.atkTargetTrans.position);
+        }
+        
+        if(transform.eulerAngles.y == 0)
+        {
+            transform.eulerAngles += new Vector3(0, 90, 0);
+        }
 
+        //攻击
+        atkTimer += Time.deltaTime;
+        if(atkTimer >= atkTime / gameController.gameSpeed)
+        {
+            Attack();
+            atkTimer = 0;
+        }
     }
 
     public void Init()
@@ -81,7 +111,13 @@ public class TowerProperty : MonoBehaviour
             return;
         }
         animator.Play("Attack");
-        bulletGo = gameController.GetGameObjectResource("Tower/ID" + tower.towerID.ToString() + "/Bullect/" + towerLevel.ToString());
+        bulletGo = gameController.GetGameObjectResource("Tower/ID" + tower.towerID.ToString() + "/Bullect/" + tower.towerLevel.ToString());
         bulletGo.transform.position = transform.position;
+        bulletGo.transform.localEulerAngles = new Vector3(-90,90,0);
+        Bullet bulletClass = bulletGo.GetComponent<Bullet>();
+        bulletClass.towerID = tower.towerID;
+        bulletClass.towerLevel = tower.towerLevel;
+        //为子弹设置目标
+        bulletClass.targetTrans = tower.atkTargetTrans;
     }
 }

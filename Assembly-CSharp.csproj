@@ -82,6 +82,7 @@
     <Compile Include="Assets\Scripts\Game\Constant.cs" />
     <Compile Include="Assets\Scripts\Game\Effect.cs" />
     <Compile Include="Assets\Scripts\Game\Entity\Monster\Monster.cs" />
+    <Compile Include="Assets\Scripts\Game\Entity\Tower\Bullet\Bullet.cs" />
     <Compile Include="Assets\Scripts\Game\Entity\Tower\Tower.cs" />
     <Compile Include="Assets\Scripts\Game\Entity\Tower\TowerProperty.cs" />
     <Compile Include="Assets\Scripts\Game\GridPoint.cs" />

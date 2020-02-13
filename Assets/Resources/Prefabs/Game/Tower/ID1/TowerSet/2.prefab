@@ -322,10 +322,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerID: 0
-  level: 0
-  upLevelCost: 0
-  monsterList: []
+  towerLevel: 0
   hasTarget: 0
+  isConverge: 0
+  atkTargetTrans: {fileID: 0}
 --- !u!114 &-6725020547361116161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,3 +339,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
+  atkTime: 1
+  upLevelPrice: 0
+  sellPrice: 0
+  towerPrice: 150
+  animator: {fileID: 0}
