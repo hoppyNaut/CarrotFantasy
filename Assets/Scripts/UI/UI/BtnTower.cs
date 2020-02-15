@@ -19,7 +19,6 @@ public class BtnTower : MonoBehaviour
         gameController = GameController.Instance;
         image = GetComponent<Image>();
         button = GetComponent<Button>();
-        
     }
 
     private void OnEnable()
@@ -39,6 +38,11 @@ public class BtnTower : MonoBehaviour
         button.onClick.AddListener(BuildTower);
     }
 
+    private void Update()
+    {
+        UpdateIcon();
+    }
+
     //建塔
     private void BuildTower()
     {
@@ -54,7 +58,7 @@ public class BtnTower : MonoBehaviour
         effectGo.transform.position = gameController.selectGrid.transform.position;
 
         //处理格子状态
-        gameController.selectGrid.FinishBuildTower();
+        gameController.selectGrid.FinishBuildTower(towerGo);
         gameController.selectGrid.HideGrid();
         gameController.selectGrid.hasTower = true;
         gameController.AddCoin(-price);

@@ -50,7 +50,7 @@ public class TowerProperty : MonoBehaviour
         {
             return;
         }
-        if(!tower.atkTargetTrans.gameObject.activeInHierarchy)
+        if(!tower.atkTargetTrans.gameObject.activeSelf)
         {
             tower.atkTargetTrans = null;
             return;

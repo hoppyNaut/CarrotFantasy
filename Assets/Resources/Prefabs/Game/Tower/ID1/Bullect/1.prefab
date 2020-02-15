@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTrans: {fileID: 0}
-  moveSpeed: 5
-  atkValue: 0
+  moveSpeed: 7
+  atkValue: 50
   towerID: 0
   towerLevel: 0

@@ -37,7 +37,7 @@ public class GridPoint : MonoBehaviour
     private GameController gameController;
     //建塔列表
     private GameObject towerListGo;
-    private GameObject handleTowerCanvasGo;
+    public GameObject handleTowerCanvasGo;
     private Transform btnUpLevelTrans;
     private Transform btnSellTrans;
     private Vector3 btnUpLevelInitPos;
@@ -53,6 +53,14 @@ public class GridPoint : MonoBehaviour
     public GridIndex gridIndex;
 
     public bool hasTower;
+
+    //有塔之后的属性
+    public GameObject towerGo;
+    [HideInInspector]
+    //当前格子上的炮塔
+    public Tower tower;
+    public TowerProperty towerProperty;
+    private GameObject upLevelSignal;
 
 #if Tool
     private Sprite monsterPathSprite;
@@ -96,6 +104,8 @@ public class GridPoint : MonoBehaviour
         btnUpLevelInitPos = btnUpLevelTrans.localPosition;
         btnSellInitPos = btnSellTrans.localPosition;
 
+        upLevelSignal = transform.Find("LevelUpSignal").gameObject;
+
         gridSprite = gameController.GetSprite("NormalMordel/Game/Grid");
         startSprite = gameController.GetSprite("NormalMordel/Game/StartSprite");
         cantBuildSprite = gameController.GetSprite("NormalMordel/Game/cantBuild");
@@ -106,7 +116,30 @@ public class GridPoint : MonoBehaviour
 #endif
     }
 
-
+    private void Update()
+    {
+        if(upLevelSignal != null)
+        {
+            if(hasTower)
+            {
+                if(towerProperty.upLevelPrice <= gameController.coin && tower.towerLevel < 3)
+                {
+                    upLevelSignal.SetActive(true);
+                }
+                else
+                {
+                    upLevelSignal.SetActive(false);
+                }
+            }
+            else
+            {
+                if(upLevelSignal.activeSelf)
+                {
+                    upLevelSignal.SetActive(false);
+                }
+            }
+        }
+    }
 
     public void InitGrid()
     {
@@ -122,7 +155,13 @@ public class GridPoint : MonoBehaviour
         Destroy(curItem);
 
 #endif
-        }
+
+#if Game
+        towerGo = null;
+        towerProperty = null;
+        hasTower = false;
+#endif
+    }
 
     public void SetGridIndex(int x,int y)
     {
@@ -180,6 +219,8 @@ public class GridPoint : MonoBehaviour
             handleTowerCanvasGo.transform.position = transform.position;
             CorrectHandleTowerCanvas();
             handleTowerCanvasGo.SetActive(true);
+            //显示塔的攻击范围
+            towerGo.transform.Find("attackRange").gameObject.SetActive(true);
         }
     }
 
@@ -194,6 +235,8 @@ public class GridPoint : MonoBehaviour
         else
         {
             handleTowerCanvasGo.SetActive(false);
+            //隐藏塔的攻击范围
+            towerGo.transform.Find("attackRange").gameObject.SetActive(false);
         }
         spriteRenderer.enabled = false;
     }
@@ -205,10 +248,13 @@ public class GridPoint : MonoBehaviour
         tween.OnComplete(() => { spriteRenderer.enabled = false; spriteRenderer.color = new Color(1, 1, 1, 1); });
     }
 
-    public void FinishBuildTower()
+    public void FinishBuildTower(GameObject towerGo)
     {
         spriteRenderer.enabled = false;
         //对塔的后续处理
+        this.towerGo = towerGo;
+        tower = towerGo.GetComponent<Tower>();
+        towerProperty = towerGo.GetComponent<TowerProperty>();
     }
 
     #endregion
@@ -232,6 +278,7 @@ public class GridPoint : MonoBehaviour
             createPos += new Vector3(GameController.Instance.mapMaker.gridWidth / 2, 0);
         }
         itemGo.transform.position = createPos;
+        itemGo.GetComponent<Item>().itemID = gridState.itemID;
         itemGo.GetComponent<Item>().gridPoint = this;
     }
 

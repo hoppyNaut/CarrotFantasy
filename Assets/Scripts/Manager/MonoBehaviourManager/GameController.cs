@@ -186,6 +186,11 @@ public class GameController : MonoBehaviour
         //更新UI显示TODO
     }
 
+    public void AddDestroyItemCount()
+    {
+        destroyItemNum++;
+    }
+
     public void AddCoin(int prize)
     {
         coin += prize;

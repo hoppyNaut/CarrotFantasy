@@ -46,7 +46,7 @@ public class Tower : MonoBehaviour
         }
         if(hasTarget)
         {
-            if(atkTargetTrans.gameObject.activeInHierarchy == false)
+            if(atkTargetTrans.gameObject.activeSelf == false)
             {
                 atkTargetTrans = null;
                 isConverge = false;
@@ -63,7 +63,8 @@ public class Tower : MonoBehaviour
         towerProperty.tower = this;
         attackRangeSr = transform.Find("attackRange").GetComponent<SpriteRenderer>();
         attackRangeSr.gameObject.SetActive(false);
-        circleCollider2D.radius = 5;
+        circleCollider2D.radius = 1.1f * towerLevel;
+        attackRangeSr.transform.localScale = new Vector3(towerLevel , towerLevel, 0);
         hasTarget = false;
         isConverge = false;
     }
@@ -78,6 +79,11 @@ public class Tower : MonoBehaviour
     public void GetTowerResource()
     {
 
+    }
+
+    private void OnMouseDown()
+    {
+        Debug.Log("点到了塔");
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

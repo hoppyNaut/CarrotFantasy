@@ -62,10 +62,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetTrans: {fileID: 0}
-  moveSpeed: 0
-  atkValue: 0
-  explosionEffect: {fileID: 1961090854306104, guid: 4f5a3659990fc5541bb9a35d2973c414,
-    type: 3}
+  moveSpeed: 8
+  atkValue: 60
+  towerID: 0
+  towerLevel: 0
 --- !u!1 &1290787149614536
 GameObject:
   m_ObjectHideFlags: 0
