@@ -83,7 +83,7 @@ public class Bullet : MonoBehaviour
         effectGo.transform.SetParent(gameController.transform);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Monster" || collision.tag == "Item")
         {

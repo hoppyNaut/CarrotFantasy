@@ -189,7 +189,7 @@ GameObject:
   - component: {fileID: 4977061104744150}
   - component: {fileID: 58387479446067080}
   - component: {fileID: -2038460375201708261}
-  - component: {fileID: -8288943505222163115}
+  - component: {fileID: -2363191748174003256}
   m_Layer: 0
   m_Name: 3
   m_TagString: Untagged
@@ -243,11 +243,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   towerID: 0
-  level: 0
-  upLevelCost: 0
-  monsterList: []
+  towerLevel: 0
   hasTarget: 0
---- !u!114 &-8288943505222163115
+  isConverge: 0
+  atkTargetTrans: {fileID: 0}
+--- !u!114 &-2363191748174003256
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -256,10 +256,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1672232784699888}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18e07680b40b63540b6a342fe69dac50, type: 3}
+  m_Script: {fileID: 11500000, guid: 829be43e6b52c29418ccee725fa325ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   tower: {fileID: 0}
+  atkTime: 0.6
+  upLevelPrice: 0
+  sellPrice: 0
+  towerPrice: 360
+  animator: {fileID: 0}
 --- !u!1 &1896360818221738
 GameObject:
   m_ObjectHideFlags: 0

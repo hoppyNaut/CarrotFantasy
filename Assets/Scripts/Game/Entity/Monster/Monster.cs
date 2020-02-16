@@ -42,26 +42,31 @@ public class Monster : MonoBehaviour
     private int targetPosIndex ;
     //是否到达终点
     private bool isReachCarrot;
+
     //是否被减速
-    private bool hasDecreaseSpeed;
-    //减速计时器
-    private float decreaseSpeedTimer;
-    //减速持续时间
-    private float decreaseSpeedTime;
+    public bool isSlowDown;
+
+    //buff列表
+    public List<BaseBuff> buffList;
+
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
         hpSlider = transform.Find("Canvas").Find("HpSlider").GetComponent<Slider>();
         hpSlider.gameObject.SetActive(false);
+        shitGo = transform.Find("Tshit").gameObject;
+        shitGo.SetActive(false);
         gameController = GameController.Instance;
         targetPosIndex = 1;
         isReachCarrot = false;
-        hasDecreaseSpeed = false;
+        isSlowDown = false;
+        buffList = new List<BaseBuff>();
     }
 
     private void OnEnable()
     {
+
         //设置初始朝向
         moveDirection = gameController.mapMaker.monsterPathPosList[1] - gameController.mapMaker.monsterPathPosList[0];
         if (moveDirection.x > 0 )
@@ -80,6 +85,10 @@ public class Monster : MonoBehaviour
         {
             return;
         }
+
+        //更新Buff
+        RefreshBuff();
+
         if(!isReachCarrot)
         {
             Vector3 targetPos = gameController.mapMaker.monsterPathPosList[targetPosIndex];
@@ -107,7 +116,7 @@ public class Monster : MonoBehaviour
         }
     }
 
-
+    #region 怪物处理
     //初始化怪物
     private void InitMonster()
     {
@@ -122,14 +131,19 @@ public class Monster : MonoBehaviour
         isReachCarrot = false;
         hpSlider.value = 1;
         hpSlider.gameObject.SetActive(false);
-        hasDecreaseSpeed = false;
-        decreaseSpeedTimer = 0.0f;
-        decreaseSpeedTime = 0.0f;
+        isSlowDown = false;
+        shitGo.SetActive(false);
+        buffList.Clear();
     }
 
     //销毁怪物处理
     private void DestroyMonster()
     {
+        if(gameController.targetTrans == this.transform)
+        {
+            gameController.HideSignal();
+        }
+
         if(!isReachCarrot)//被玩家击杀 
         {
             //生成金币
@@ -194,6 +208,68 @@ public class Monster : MonoBehaviour
             gameObject.GetComponent<SpriteRenderer>().flipX = true;
         }
     }
+    #endregion
+
+    #region 怪物Buff处理
+    public void AddBuff(BaseBuff buff)
+    {
+        bool hasSameBuff = false;
+        int index = -1;
+        //遍历buff列表寻找是否已有相同类型的buff
+        for(int i = 0; i < buffList.Count; i++)
+        {
+            if(buffList[i].buffType == buff.buffType)
+            {
+                hasSameBuff = true;
+                index = i;
+                break;
+            }
+        }
+
+        //如果没有相同buff,就添加
+        if(!hasSameBuff)
+        {
+            buffList.Add(buff);
+            buff.OnAdd();
+        }
+        //如果有了,重置已有的buff
+        else
+        {
+            buffList[index].OnInit();
+        }
+    }
+
+    public void RefreshBuff()
+    {
+        for(int i = buffList.Count - 1; i >= 0; i--)
+        {
+            buffList[i].OnUpdate();
+        }
+    }
+
+    public void RemoveBuff(BaseBuff buff)
+    {
+        buffList.Remove(buff);
+        buff.OnRemove();
+    }
+
+    public void SlowDown(BaseBuff buff)
+    {
+        if(!isSlowDown)
+        {
+            moveSpeed -= buff.buffValue;
+            shitGo.SetActive(true);
+        }
+        isSlowDown = true;
+    }
+
+    public void CancelSlowDown()
+    {
+        isSlowDown = false;
+        moveSpeed = initMoveSpeed;
+        shitGo.SetActive(false);
+    }
+    #endregion
 
     private void OnMouseDown()
     {

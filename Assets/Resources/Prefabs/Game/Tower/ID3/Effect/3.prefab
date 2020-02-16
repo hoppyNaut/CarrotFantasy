@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 95726507010435428}
   - component: {fileID: 61198344011166248}
   - component: {fileID: -6916228322038001204}
+  - component: {fileID: 65306539142605850}
   m_Layer: 0
   m_Name: 3
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 7
   m_Sprite: {fileID: 21300000, guid: 9fb92e6496ec51840a1101a6f276a233, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,3 +142,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animTime: 0.53
   resName: Tower/ID3/Effect/3
+--- !u!114 &65306539142605850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1572646733820790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd3cd74396c66b4a8d4bf357b2e3ddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackValue: 30

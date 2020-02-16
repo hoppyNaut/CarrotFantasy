@@ -126,7 +126,7 @@ public class Item : MonoBehaviour
         //如果点击的是UI不交互
         if (EventSystem.current.IsPointerOverGameObject())
         {
-            Debug.Log("点击到了UI");
+            //Debug.Log("点击到了UI");
             return;
         }
 

@@ -33,7 +33,7 @@ public class TowerProperty : MonoBehaviour
     protected GameObject bulletGo;
 
     public Animator animator;
-    private GameController gameController;
+    protected GameController gameController;
 
     protected virtual void Start()
     {
@@ -46,17 +46,17 @@ public class TowerProperty : MonoBehaviour
 
     protected virtual void Update()
     {
-        if(gameController.isGamePause || tower.atkTargetTrans == null)
+        if (gameController.isGamePause || tower.atkTargetTrans == null)
         {
             return;
         }
-        if(!tower.atkTargetTrans.gameObject.activeSelf)
+        if (!tower.atkTargetTrans.gameObject.activeSelf)
         {
             tower.atkTargetTrans = null;
             return;
         }
         //旋转
-        if(tower.atkTargetTrans.gameObject.tag == "Item")
+        if (tower.atkTargetTrans.gameObject.tag == "Item")
         {
             transform.LookAt(tower.atkTargetTrans.position+ new Vector3(0,0,3));
         }
@@ -91,7 +91,7 @@ public class TowerProperty : MonoBehaviour
         GameObject effectGo = gameController.GetGameObjectResource("BuildEffect");
         effectGo.transform.position = transform.position;
         effectGo.transform.SetParent(gameController.transform);
-        tower.DestroyTower();
+        DestroyTower();
     }
 
     public void UpLevelTower()
@@ -101,7 +101,7 @@ public class TowerProperty : MonoBehaviour
         effectGo.transform.position = transform.position;
         effectGo.transform.SetParent(gameController.transform);
         //销毁当前塔
-        tower.DestroyTower();
+        DestroyTower();
     }
 
     protected virtual void Attack()
@@ -119,5 +119,10 @@ public class TowerProperty : MonoBehaviour
         bulletClass.towerLevel = tower.towerLevel;
         //为子弹设置目标
         bulletClass.targetTrans = tower.atkTargetTrans;
+    }
+
+    protected virtual void DestroyTower()
+    {
+        tower.DestroyTower();
     }
 }

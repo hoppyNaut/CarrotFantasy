@@ -75,7 +75,7 @@ public class PlayerManager
         };
         NormalModeLevelInfoList = new List<Stage>()
         {
-            new Stage(10,2,new int[]{ 1,2},false,0,1,1,true,false),
+            new Stage(10,5,new int[]{ 1,2,3,4,5},false,0,1,1,true,false),
             new Stage(10,2,new int[]{ 3,2},false,0,2,1,true,false),
             new Stage(10,2,new int[]{ 4,2},false,0,3,1,true,false),
             new Stage(10,2,new int[]{ 5,2},false,0,4,1,true,false),
