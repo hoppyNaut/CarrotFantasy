@@ -892,8 +892,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb9d817886cb37d4687f4ecd5f74a8d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  towerID: 0
-  towerLevel: 0
   price: 0
 --- !u!1 &3415032448265963881 stripped
 GameObject:
@@ -913,6 +911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4684d2df75a5e7840bd73e102075eea8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  price: 0
 --- !u!1001 &3593106605469595178
 PrefabInstance:
   m_ObjectHideFlags: 0

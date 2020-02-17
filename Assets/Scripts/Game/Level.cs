@@ -36,7 +36,8 @@ public class Level
         }
         else if(curRound == totalRound - 1)
         {
-           //最后一波怪
+            //最后一波怪
+            HandleLastRound();
         }
         else
         {

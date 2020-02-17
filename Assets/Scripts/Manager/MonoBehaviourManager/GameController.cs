@@ -76,6 +76,8 @@ public class GameController : MonoBehaviour
         gameManager = GameManager.Instance;
         curStage = gameManager.curStage;
         normalModePanel = gameManager.uiManager.mUIFacade.GetCurScenePanel(Constant.NormalModePanel) as NormalModePanel;
+        normalModePanel.EnterPanel();
+
         mapMaker = transform.GetComponent<MapMaker>();
         mapMaker.Init();
         mapMaker.LoadMap(curStage.mBigLevelID,curStage.mLevelID);
@@ -123,9 +125,11 @@ public class GameController : MonoBehaviour
             towerGo.transform.localScale = Vector3.one;
         }
      
-
         curLevel = new Level(mapMaker.roundInfoList.Count, mapMaker.roundInfoList);
-        curLevel.HandleRound();
+        isGamePause = true;
+
+        normalModePanel.topPage.UpdateCoinText();
+        normalModePanel.topPage.UpdateRoundText();
 #endif
     }
 
@@ -143,7 +147,7 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                if(!creatingMonster)
+                if (!creatingMonster)
                 {
                     CreateMonster();
                 }
@@ -157,6 +161,15 @@ public class GameController : MonoBehaviour
         }
 #endif
     }
+
+    #region 游戏进程控制方法
+    public void StartGame()
+    {
+        isGamePause = false;
+        curLevel.HandleRound();
+    }
+
+    #endregion
 
     #region 集火目标处理方法
     public void ShowSignal()
@@ -194,13 +207,47 @@ public class GameController : MonoBehaviour
     public void AddCoin(int prize)
     {
         coin += prize;
-        //更新UI显示TODO
+        //更新UI显示
+        normalModePanel.topPage.UpdateCoinText();
     }
 
     public void DecreaseCarrotHp()
     {
         carrotHp -= 1;
         mapMaker.carrot.SetHp(carrotHp);
+    }
+
+    public bool IsClearAllItem()
+    {
+        for(int x = 0; x < MapMaker.xColumn; x++)
+        {
+            for(int y = 0; y < MapMaker.yRow; y++)
+            {
+                if(mapMaker.gridPoints[x,y].gridState.hasItem == true)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    public int GetCarrotState()
+    {
+        int carrotState = 0;
+        if(carrotHp >= 10)
+        {
+            carrotState = 1;
+        }
+        else if(carrotHp >= 5)
+        {
+            carrotState = 2;
+        }
+        else if(carrotHp >= 1)
+        {
+            carrotState = 3;
+        }
+        return carrotState;
     }
     #endregion
 
@@ -245,6 +292,7 @@ public class GameController : MonoBehaviour
         curLevel.AddRoundNum();
         curLevel.HandleRound();
         //更新UI
+        normalModePanel.topPage.UpdateRoundText();
     }
     #endregion
 

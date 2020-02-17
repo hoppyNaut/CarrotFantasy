@@ -1,5 +1,99 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &245889708
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 245889709}
+  - component: {fileID: 245889711}
+  - component: {fileID: 245889710}
+  - component: {fileID: 245889712}
+  m_Layer: 5
+  m_Name: FinalWave
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &245889709
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245889708}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5457603289964249310}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 393, y: 172}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &245889711
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245889708}
+  m_CullTransparentMesh: 0
+--- !u!114 &245889710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245889708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 2cf06659e790764409f2fec72fd1a19d, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!95 &245889712
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 245889708}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 38fda3778535de54281debca513be9ad, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5457603288681425569
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +492,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603288802079039}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881587}
+        m_MethodName: ChooseOtherLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603288898909980
@@ -491,6 +596,7 @@ GameObject:
   - component: {fileID: 5457603288994465268}
   - component: {fileID: 5457603288994465226}
   - component: {fileID: 5457603288994465227}
+  - component: {fileID: 47881587}
   m_Layer: 5
   m_Name: MenuPage
   m_TagString: Untagged
@@ -555,6 +661,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &47881587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457603288994465269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c14b359d9a7d4142bbdd5605ea94596, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5457603289012414308
 GameObject:
   m_ObjectHideFlags: 0
@@ -843,7 +961,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603289036210419}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881593}
+        m_MethodName: ClosePrizePage
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603289038787834
@@ -1111,7 +1240,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603289092436206}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5457603290269207242}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603289210569779
@@ -1204,13 +1344,14 @@ GameObject:
   - component: {fileID: 5457603289305102096}
   - component: {fileID: 5457603289305102102}
   - component: {fileID: 5457603289305102103}
+  - component: {fileID: 47881585}
   m_Layer: 5
-  m_Name: Img_TopPage
+  m_Name: TopPage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5457603289305102096
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1273,6 +1414,24 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &47881585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457603289305102097}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8ce4847c014dd14e915483ddc989df2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  btn_gameSpeedSprite:
+  - {fileID: 21300000, guid: f0c6ac365dcb6c641b11998f1435f745, type: 3}
+  - {fileID: 21300000, guid: 8fba0d6ab564a064ba28020ae153932e, type: 3}
+  btn_PauseSprite:
+  - {fileID: 21300000, guid: b3be9adb278ac9f4ea8abc4b2d20e757, type: 3}
+  - {fileID: 21300000, guid: 73408c617128e4f499704fbac0dd62e3, type: 3}
 --- !u!1 &5457603289358486019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1464,7 +1623,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603289378838171}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881585}
+        m_MethodName: ShowMenu
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603289388950491
@@ -1746,6 +1916,7 @@ GameObject:
   - component: {fileID: 5457603289680628718}
   - component: {fileID: 5457603289680628716}
   - component: {fileID: 5457603289680628717}
+  - component: {fileID: 47881589}
   m_Layer: 5
   m_Name: GameOverPage
   m_TagString: Untagged
@@ -1815,6 +1986,18 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &47881589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457603289680628719}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5b21ab28b704e04e9b8ca4ac7094743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5457603289701739494
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,7 +2189,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603289793644690}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881589}
+        m_MethodName: ReplayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603289806505034
@@ -2530,7 +2724,7 @@ RectTransform:
   m_GameObject: {fileID: 5457603289964249311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.78125, y: 0.78125, z: 0.78125}
   m_Children:
   - {fileID: 5457603289305102096}
   - {fileID: 5457603288994465268}
@@ -2538,6 +2732,7 @@ RectTransform:
   - {fileID: 5457603290269207241}
   - {fileID: 5457603290015896450}
   - {fileID: 5457603289013527687}
+  - {fileID: 245889709}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2558,6 +2753,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0ee713c2f9f9eb4abebe1a5e7cb9301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  topPage: {fileID: 0}
+  menuPage: {fileID: 0}
+  gameOverPage: {fileID: 0}
+  gameWinPage: {fileID: 0}
+  prizePage: {fileID: 0}
+  totalRound: 0
 --- !u!1 &5457603290015896451
 GameObject:
   m_ObjectHideFlags: 0
@@ -2570,6 +2771,7 @@ GameObject:
   - component: {fileID: 5457603290015896448}
   - component: {fileID: 5457603290015896449}
   - component: {fileID: 5457603290015896455}
+  - component: {fileID: 47881593}
   m_Layer: 5
   m_Name: PrizePage
   m_TagString: Untagged
@@ -2656,6 +2858,28 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &47881593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457603290015896451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbfc55b6dcd4e684a8ed0bdde786c679, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prizeSprites:
+  - {fileID: 21300000, guid: 031ece632e5a9da4c8b5f8dc2fdc8f9d, type: 3}
+  - {fileID: 21300000, guid: 76c0db11aa9cd8d4d8f15cb8c62584ff, type: 3}
+  - {fileID: 21300000, guid: 1ae3020148bb4cb458736121bd8c72a4, type: 3}
+  - {fileID: 21300000, guid: bd016503d578bde4a9909ebc69568548, type: 3}
+  instructionSprites:
+  - {fileID: 21300000, guid: 76133a65831e25048aa3c63dd3935c95, type: 3}
+  - {fileID: 21300000, guid: be676f7b126e92f4ba6fdca6aacc5f55, type: 3}
+  - {fileID: 21300000, guid: 0e12abc08de9585429b4e0f4f388d85d, type: 3}
+  - {fileID: 21300000, guid: d4c0f1a6a8c0e6d49a3448f64147b4da, type: 3}
 --- !u!1 &5457603290024075043
 GameObject:
   m_ObjectHideFlags: 0
@@ -2972,7 +3196,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603290224181236}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881587}
+        m_MethodName: ContinueGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603290242982446
@@ -3092,7 +3327,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603290242982435}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881585}
+        m_MethodName: ChangeGameSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603290269207242
@@ -3106,6 +3352,7 @@ GameObject:
   - component: {fileID: 5457603290269207241}
   - component: {fileID: 5457603290269207247}
   - component: {fileID: 5457603290269207240}
+  - component: {fileID: 47881591}
   m_Layer: 5
   m_Name: GameWinPage
   m_TagString: Untagged
@@ -3176,6 +3423,22 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &47881591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5457603290269207242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f11e39c2b5f29439b26de9a9d3d981, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carrotSprites:
+  - {fileID: 21300000, guid: 60eb4237c012b6f4ea695db2bf0da64d, type: 3}
+  - {fileID: 21300000, guid: cad46174b6b4a5841aa82fe9a94c5154, type: 3}
+  - {fileID: 21300000, guid: 80708329aa9fe2844853226f976371b7, type: 3}
 --- !u!1 &5457603290281965430
 GameObject:
   m_ObjectHideFlags: 0
@@ -3712,7 +3975,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603290455257943}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881585}
+        m_MethodName: PauseGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603290478059094
@@ -4028,7 +4302,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603290547436942}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881589}
+        m_MethodName: ChooseOtherLevel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &5457603290645349621
@@ -4333,6 +4618,17 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5457603290713050517}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 47881587}
+        m_MethodName: ReplayGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null

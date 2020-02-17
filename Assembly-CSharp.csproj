@@ -138,7 +138,13 @@
     <Compile Include="Assets\Scripts\UI\UI\BtnUpLevel.cs" />
     <Compile Include="Assets\Scripts\UI\UI\CanvasDontDestroyOnLoad.cs" />
     <Compile Include="Assets\Scripts\UI\UI\CoinMove.cs" />
+    <Compile Include="Assets\Scripts\UI\UI\MonsterNet\MonsterPet.cs" />
     <Compile Include="Assets\Scripts\UI\UI\UIFacade.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPage\GameOverPage.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPage\GameWinPage.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPage\MenuPage.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPage\PrizePage.cs" />
+    <Compile Include="Assets\Scripts\UI\UIPage\TopPage.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel\BasePanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel\BossModePanel.cs" />
     <Compile Include="Assets\Scripts\UI\UIPanel\GameBossOptionPanel.cs" />

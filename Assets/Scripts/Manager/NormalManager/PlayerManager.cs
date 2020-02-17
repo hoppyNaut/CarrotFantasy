@@ -35,6 +35,8 @@ public class PlayerManager
     public int nest;
     public int diamonds;
 
+    public List<MonsterPetData> monsterPetDataList;
+
     //大关卡数量
     public int bigLevelNum;
     //炮塔数量
@@ -91,7 +93,7 @@ public class PlayerManager
             new Stage(10,2,new int[]{ 10,2},false,0,4,3,true,false),
             new Stage(10,2,new int[]{ 11,2},false,0,5,3,false,false),
         };
-
+        monsterPetDataList = new List<MonsterPetData>();
 
 
     }
