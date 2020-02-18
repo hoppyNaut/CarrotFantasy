@@ -19,13 +19,15 @@ public class MenuPage : MonoBehaviour
 
     public void ReplayGame()
     {
-        GameController.Instance.isGamePause = false;
+        //GameController.Instance.isGamePause = false;
+        GameController.Instance.isGameOver = true;
         normalModePanel.Replay();
     }
 
     public void ChooseOtherLevel()
     {
-        GameController.Instance.isGamePause = false;
+        //GameController.Instance.isGamePause = false;
+        GameController.Instance.isGameOver = true;
         normalModePanel.ChooseOtherLevel();
     }
 }

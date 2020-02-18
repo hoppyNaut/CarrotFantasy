@@ -28,6 +28,8 @@ public class Stage
     //关卡怪物波次
     public int mTotalWaves;
 
+    public Stage() { }
+
     public Stage(int totalWaves,int towerIDListLength,int [] towerIDList,bool allClear,
         int carrotState,int levelID,int bigLevelID,bool unLocked,bool isHiddenLevel)
     {

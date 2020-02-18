@@ -43,7 +43,7 @@ public abstract class BaseBuff
     /// </summary>
     public virtual void OnAdd()
     {
-        Debug.Log("获得Buff：" + buffType.ToString());
+        //Debug.Log("获得Buff：" + buffType.ToString());
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public abstract class BaseBuff
     /// </summary>
     public virtual void OnRemove()
     {
-        Debug.Log("移除Buff：" + buffType.ToString());
+        //Debug.Log("移除Buff：" + buffType.ToString());
     }
 
     /// <summary>

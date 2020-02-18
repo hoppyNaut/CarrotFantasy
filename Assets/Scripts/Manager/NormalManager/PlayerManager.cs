@@ -52,50 +52,111 @@ public class PlayerManager
 
     public PlayerManager()
     {
-        adventrueModeNum = 100;
-        burriedLevelNum = 100;
-        bossModeNum = 100;
-        coin = 1000;
-        killMonsterNum = 100;
-        killBossNum = 100;
-        ClearItemNum = 100;
+        //adventrueModeNum = 0;
+        //burriedLevelNum = 0;
+        //bossModeNum = 0;
+        //coin = 0;
+        //killMonsterNum = 0;
+        //killBossNum = 0;
+        //ClearItemNum = 0;
 
-        bigLevelNum = 3;
-        towerNum = 12;
+        //bigLevelNum = 3;
+        //towerNum = 12;
 
-        unLockedNormalModeBigLevelList = new List<bool>()
-        {
-            true,true,true
-        };
-        unLockedNormalModeLevelNumList = new List<int>()
-        {
-            4,4,4
-        };
-        totalNormalModeLevelNumList = new List<int>()
-        {
-            5,5,5
-        };
-        NormalModeLevelInfoList = new List<Stage>()
-        {
-            new Stage(10,5,new int[]{ 1,2,3,4,5},false,0,1,1,true,false),
-            new Stage(10,2,new int[]{ 3,2},false,0,2,1,true,false),
-            new Stage(10,2,new int[]{ 4,2},false,0,3,1,true,false),
-            new Stage(10,2,new int[]{ 5,2},false,0,4,1,true,false),
-            new Stage(10,2,new int[]{ 6,2},false,0,5,1,false,true),
-            new Stage(10,3,new int[]{ 7,2,1},false,0,1,2,true,false),
-            new Stage(10,2,new int[]{ 8,2},false,0,2,2,true,false),
-            new Stage(10,2,new int[]{ 9,2},false,0,3,2,true,false),
-            new Stage(10,2,new int[]{ 10,2},false,0,4,2,true,false),
-            new Stage(10,2,new int[]{ 11,2},false,0,5,2,false,false),
-            new Stage(10,3,new int[]{ 7,2,1},false,0,1,3,true,false),
-            new Stage(10,2,new int[]{ 8,2},false,0,2,3,true,false),
-            new Stage(10,2,new int[]{ 9,2},false,0,3,3,true,false),
-            new Stage(10,2,new int[]{ 10,2},false,0,4,3,true,false),
-            new Stage(10,2,new int[]{ 11,2},false,0,5,3,false,false),
-        };
-        monsterPetDataList = new List<MonsterPetData>();
+        //cookies = 1000;
+        //milk = 1000;
+        //nest = 10;
+        //diamonds = 1000;
+
+        //unLockedNormalModeBigLevelList = new List<bool>()
+        //{
+        //    true,true,true
+        //};
+        //unLockedNormalModeLevelNumList = new List<int>()
+        //{
+        //    5,5,5
+        //};
+        //totalNormalModeLevelNumList = new List<int>()
+        //{
+        //    5,5,5
+        //};
+        //NormalModeLevelInfoList = new List<Stage>()
+        //{
+        //    new Stage(10,5,new int[]{ 1,2,3,4,5},false,0,1,1,true,false),
+        //    new Stage(10,2,new int[]{ 3,2},false,0,2,1,false,false),
+        //    new Stage(10,2,new int[]{ 4,2},false,0,3,1,false,false),
+        //    new Stage(10,2,new int[]{ 5,2},false,0,4,1,false,false),
+        //    new Stage(10,2,new int[]{ 6,2},false,0,5,1,false,true),
+        //    new Stage(10,3,new int[]{ 7,2,1},false,0,1,2,false,false),
+        //    new Stage(10,2,new int[]{ 8,2},false,0,2,2,false,false),
+        //    new Stage(10,2,new int[]{ 9,2},false,0,3,2,false,false),
+        //    new Stage(10,2,new int[]{ 10,2},false,0,4,2,false,false),
+        //    new Stage(10,2,new int[]{ 11,2},false,0,5,2,false,false),
+        //    new Stage(10,3,new int[]{ 7,2,1},false,0,1,3,false,false),
+        //    new Stage(10,2,new int[]{ 8,2},false,0,2,3,false,false),
+        //    new Stage(10,2,new int[]{ 9,2},false,0,3,3,false,false),
+        //    new Stage(10,2,new int[]{ 10,2},false,0,4,3,false,false),
+        //    new Stage(10,2,new int[]{ 11,2},false,0,5,3,false,false),
+        //};
+        //monsterPetDataList = new List<MonsterPetData>()
+        //{
+        //    new MonsterPetData()
+        //    {
+        //        monsterID = 1,
+        //        monsterLevel = 1,
+        //        remainCookies = 0,
+        //        remainMilk = 0,
+        //    },
+        //    new MonsterPetData()
+        //    {
+        //        monsterID = 2,
+        //        monsterLevel = 1,
+        //        remainCookies = 0,
+        //        remainMilk = 0
+        //    },
+        //    new MonsterPetData()
+        //    {
+        //        monsterID = 3,
+        //        monsterLevel = 1,
+        //        remainCookies = 0,
+        //        remainMilk = 0
+        //    },
+        //};
 
 
+    }
+
+    public void SaveData()
+    {
+        Memento memento = new Memento();
+        memento.SaveByJson();
+    }
+
+    public void ReadData()
+    {
+        Memento memento = new Memento();
+        PlayerManager playerManager = memento.LoadByJson();
+        adventrueModeNum = playerManager.adventrueModeNum;
+        burriedLevelNum = playerManager.burriedLevelNum;
+        bossModeNum = playerManager.bossModeNum;
+        coin = playerManager.coin;
+        killMonsterNum = playerManager.killMonsterNum;
+        killBossNum = playerManager.killBossNum;
+        ClearItemNum = playerManager.ClearItemNum;
+
+        bigLevelNum = playerManager.bigLevelNum;
+        towerNum = playerManager.towerNum;
+
+        cookies = playerManager.cookies;
+        milk = playerManager.milk;
+        nest = playerManager.nest;
+        diamonds = playerManager.diamonds;
+
+        monsterPetDataList = playerManager.monsterPetDataList;
+        unLockedNormalModeBigLevelList = playerManager.unLockedNormalModeBigLevelList;
+        NormalModeLevelInfoList = playerManager.NormalModeLevelInfoList;
+        unLockedNormalModeLevelNumList = playerManager.unLockedNormalModeLevelNumList;
+        totalNormalModeLevelNumList = playerManager.totalNormalModeLevelNumList;
     }
 
 }

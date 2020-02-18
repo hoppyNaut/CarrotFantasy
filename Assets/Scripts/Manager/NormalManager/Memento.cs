@@ -1,18 +1,51 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using LitJson;
+using System.IO;
 
-public class Memento : MonoBehaviour
+public class Memento
 {
-    // Start is called before the first frame update
-    void Start()
+    public void SaveByJson()
     {
-        
+        PlayerManager playerManager = GameManager.Instance.playerManager;
+        //Test
+        string filePath = Application.dataPath + "/Resources/Json/Player/TestPlayerManager.json";
+        //string filePath = Application.dataPath + "/Resources/Json/Player/PlayerManager.json";
+        string jsonStr = JsonMapper.ToJson(playerManager);
+        StreamWriter sw = new StreamWriter(filePath);
+        sw.Write(jsonStr);
+        sw.Close();
     }
 
-    // Update is called once per frame
-    void Update()
+    public PlayerManager LoadByJson()
     {
-        
+        PlayerManager playerManager = new PlayerManager();
+        string filePath = "";
+
+        if(GameManager.Instance.initPlayerManager)
+        {
+            filePath = Application.dataPath + "/Resources/Json/Player/playerManagerInitData.json";
+        }
+        else
+        {
+            //Test
+           filePath = Application.dataPath + "/Resources/Json/Player/TestPlayerManager.json";
+           //filePath = Application.dataPath + "/Resources/Json/Player/PlayerManager.json";
+        }
+
+        if(File.Exists(filePath))
+        {
+            StreamReader sr = new StreamReader(filePath);
+            string jsonStr = sr.ReadToEnd();
+            sr.Close();
+
+            playerManager = JsonMapper.ToObject<PlayerManager>(jsonStr);
+        }
+        else
+        {
+            Debug.Log(filePath + "读取失败");
+        }
+        return playerManager;
     }
 }

@@ -110,6 +110,9 @@ public class SetPanel : BasePanel
     //重置游戏
     public void ResetGame()
     {
+        GameManager.Instance.initPlayerManager = true;
+        GameManager.Instance.playerManager.ReadData();
+        ShowStatistics();
         CloseResetPage();
     }
 

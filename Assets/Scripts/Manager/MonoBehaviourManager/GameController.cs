@@ -27,6 +27,7 @@ public class GameController : MonoBehaviour
     public NormalModePanel normalModePanel;
     public MapMaker mapMaker;
 
+
     //当前波次产怪列表
     public int[] monsterIDList;
     //怪物序号
@@ -169,6 +170,11 @@ public class GameController : MonoBehaviour
         curLevel.HandleRound();
     }
 
+    public void HandleLastRound()
+    {
+
+    }
+
     #endregion
 
     #region 集火目标处理方法
@@ -260,6 +266,11 @@ public class GameController : MonoBehaviour
 
     private void InstantiateMonster()
     {
+        if (monsterIDIndex >= monsterIDList.Length)
+        {
+            StopCreateMonster();
+            return;
+        }
         //产生特效
         GameObject effectGo = GetGameObjectResource("CreateEffect");
         effectGo.transform.SetParent(transform);
@@ -272,10 +283,7 @@ public class GameController : MonoBehaviour
             monsterGo.transform.SetParent(transform);
             monsterGo.transform.position = mapMaker.monsterPathPosList[0];
             monsterIDIndex++;
-            if(monsterIDIndex >= monsterIDList.Length)
-            {
-                StopCreateMonster();
-            }
+            
         }
     }
 

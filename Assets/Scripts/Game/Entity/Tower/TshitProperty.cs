@@ -11,7 +11,7 @@ public class TshitProperty : TowerProperty
 
     protected override void Update()
     {
-        if (gameController.isGamePause || tower.atkTargetTrans == null)
+        if (gameController.isGamePause || tower.atkTargetTrans == null || gameController.isGameOver)
         {
             return;
         }

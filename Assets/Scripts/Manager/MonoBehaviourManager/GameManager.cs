@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
 
     public Stage curStage;
 
+    public bool initPlayerManager;//是否重置playerManager
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -33,6 +35,8 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         _instance = this;
         playerManager = new PlayerManager();
+        //playerManager.SaveData();
+        playerManager.ReadData();
         factoryManager = new FactoryManager();
         audioManager = new AudioManager() ;
         uiManager = new UIManager();

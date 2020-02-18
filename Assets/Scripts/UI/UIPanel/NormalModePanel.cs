@@ -93,6 +93,7 @@ public class NormalModePanel : BasePanel
 
     public void ShowGameWinPage()
     {
+        GameController.Instance.isGameOver = true;
         UpdatePlayerManagerData();
         //获取当前小关卡索引
         int index = 0;
@@ -110,7 +111,11 @@ public class NormalModePanel : BasePanel
         int carrotState = GameController.Instance.GetCarrotState();
         if(carrotState != 0)
         {
-            if (curStage.mCarrotState > carrotState)
+            if(curStage.mCarrotState == 0)
+            {
+                curStage.mCarrotState = carrotState;
+            }
+            else if (curStage.mCarrotState > carrotState)
             {
                 curStage.mCarrotState = carrotState;
             }
@@ -128,6 +133,7 @@ public class NormalModePanel : BasePanel
 
     public void ShowGameOverPage()
     {
+        GameController.Instance.isGameOver = true;
         UpdatePlayerManagerData();
         gameOverPageGo.SetActive(true);
     }
@@ -148,6 +154,10 @@ public class NormalModePanel : BasePanel
     {
         int roundNum = GameController.Instance.curLevel.curRound + 1;
         string roundStr = "";
+        if(roundNum > totalRound)
+        {
+            roundNum = totalRound;
+        }
         if(roundNum < 10)
         {
             roundStr += "0  " + roundNum.ToString();

@@ -33,10 +33,13 @@ public class Level
         if(curRound >= totalRound)
         {
             //游戏胜利
+            GameController.Instance.isGamePause = true;
+            GameController.Instance.normalModePanel.ShowGameWinPage();
         }
         else if(curRound == totalRound - 1)
         {
             //最后一波怪
+            GameController.Instance.normalModePanel.ShowFinalWaveUI();
             HandleLastRound();
         }
         else

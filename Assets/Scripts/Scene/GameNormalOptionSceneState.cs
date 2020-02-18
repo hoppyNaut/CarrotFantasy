@@ -30,7 +30,16 @@ public class GameNormalOptionSceneState : BaseSceneState
 
     public override void OnExitScene()
     {
+        GameNormalOptionPanel gameNormalOptionPanel = mUIFacade.GetCurScenePanel(Constant.GameNormalOptionPanel) as GameNormalOptionPanel;
+        if(!gameNormalOptionPanel.isInBigLevel)
+        {
+            SceneManager.LoadScene(Constant.NormalModeSceneIndex);
+        }
+        else
+        {
+            SceneManager.LoadScene(Constant.MainSceneIndex);
+        }
+        gameNormalOptionPanel.isInBigLevel = true;
         base.OnExitScene();
-        SceneManager.LoadScene(Constant.NormalModeSceneIndex);
     }
 }

@@ -38,7 +38,7 @@ public class PrizePage : MonoBehaviour
 
     private void OnEnable()
     {
-        int randomNum = Random.Range(0, 3);
+        int randomNum = Random.Range(0, 4);
         string prizeName = "";
         if (randomNum >= 3 && GameManager.Instance.playerManager.monsterPetDataList.Count < 3)
         {

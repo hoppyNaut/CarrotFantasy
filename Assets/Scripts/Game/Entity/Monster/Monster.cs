@@ -66,7 +66,7 @@ public class Monster : MonoBehaviour
 
     private void OnEnable()
     {
-
+        gameController = GameController.Instance;
         //设置初始朝向
         moveDirection = gameController.mapMaker.monsterPathPosList[1] - gameController.mapMaker.monsterPathPosList[0];
         if (moveDirection.x > 0 )
@@ -81,7 +81,7 @@ public class Monster : MonoBehaviour
 
     private void Update()
     {
-        if (gameController.isGamePause)
+        if (gameController.isGamePause || gameController.isGameOver)
         {
             return;
         }
@@ -153,7 +153,13 @@ public class Monster : MonoBehaviour
             coin.transform.position = transform.position;
             //增加玩家的金币
             gameController.AddCoin(prize);
-            //奖品随机掉落TODO
+            //奖品随机掉落
+            int randomNum = Random.Range(0, 100);
+            if(randomNum < 10)
+            {
+                GameObject prizeGo = gameController.GetGameObjectResource("Prize");
+                prizeGo.transform.position = transform.position;
+            }
         }
         //产生销毁特效
         GameObject deathEffect = gameController.GetGameObjectResource("DestroyEffect");
@@ -273,6 +279,7 @@ public class Monster : MonoBehaviour
 
     private void OnMouseDown()
     {
+        Debug.Log("点击到了怪物");
         if(gameController.targetTrans == null)
         {
             gameController.targetTrans = transform;

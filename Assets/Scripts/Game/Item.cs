@@ -34,7 +34,7 @@ public class Item : MonoBehaviour
 
     private void OnEnable()
     {
-        if(itemID == 0)
+        if(hpSlider == null)
         {
             return;
         }
@@ -71,9 +71,10 @@ public class Item : MonoBehaviour
 #if Game
     private void InitItem()
     {
+        gameController = GameController.Instance;
         prize = 1000 - 100 * itemID;
         hp = 1500 - 100 * itemID;
-        curHp = hp;
+        CurHp = hp;
         hpHideTimer = 3;
         showHp = false;
     }

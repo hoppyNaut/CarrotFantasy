@@ -16,8 +16,9 @@ public class FanBullet : Bullet
     private float existTimer;
     private bool hasTarget;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         existTimer = 0;
         hasTarget = false;
     }
@@ -29,7 +30,7 @@ public class FanBullet : Bullet
 
     protected override void Update()
     {
-        if(gameController.isGameOver || existTimer >= existTime)
+        if(gameController.isGameOver || existTimer >= existTime )
         {
             DestroyBullet();
             return;

@@ -34,6 +34,11 @@ public class Tower : MonoBehaviour
 
     void Update()
     {
+        if(GameController.Instance.isGamePause || GameController.Instance.isGameOver)
+        {
+            return;
+        }
+
         //更换集火目标处理
         if(isConverge)
         {

@@ -8,8 +8,9 @@ public class CrystalProperty : TowerProperty
     private float bulletWidth;
     private float bulletLength;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
         if(animator == null)
         {
             return;
@@ -27,7 +28,7 @@ public class CrystalProperty : TowerProperty
 
     protected override void Update()
     {
-        if (gameController.isGamePause || tower.atkTargetTrans == null)
+        if (gameController.isGamePause || tower.atkTargetTrans == null || gameController.isGameOver)
         {
             if(tower.atkTargetTrans == null)
             {

@@ -56,7 +56,8 @@ public class Carrot : MonoBehaviour
         }
         else
         {
-
+            GameController.Instance.isGamePause = true;
+            GameController.Instance.normalModePanel.ShowGameOverPage();
         }
     }
 

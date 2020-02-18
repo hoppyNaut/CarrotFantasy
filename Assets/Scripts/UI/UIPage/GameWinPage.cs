@@ -41,18 +41,22 @@ public class GameWinPage : MonoBehaviour
         txt_TotalRound.text = normalModePanel.totalRound.ToString();
         txt_LevelCount.text = GameController.Instance.curStage.mBigLevelID + "-" + GameController.Instance.curStage.mLevelID.ToString();
         int carrotState = GameController.Instance.GetCarrotState();
-        img_Carrot.sprite = carrotSprites[carrotState - 1];
+        if(carrotState != 0)
+        {
+            img_Carrot.sprite = carrotSprites[carrotState - 1];
+        }
+        
     }
 
     public void ReplayGame()
     {
-        GameController.Instance.isGamePause = false;
+        //GameController.Instance.isGamePause = false;
         normalModePanel.Replay();
     }
 
     public void ChooseOtherLevel()
     {
-        GameController.Instance.isGamePause = false;
+        //GameController.Instance.isGamePause = false;
         normalModePanel.ChooseOtherLevel();
     }
 }

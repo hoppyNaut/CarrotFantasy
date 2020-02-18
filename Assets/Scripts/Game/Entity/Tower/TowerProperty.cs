@@ -44,9 +44,14 @@ public class TowerProperty : MonoBehaviour
         atkTimer = atkTime;
     }
 
+    protected virtual void OnEnable()
+    {
+        gameController = GameController.Instance;
+    }
+
     protected virtual void Update()
     {
-        if (gameController.isGamePause || tower.atkTargetTrans == null)
+        if (gameController.isGamePause || gameController.isGameOver || tower.atkTargetTrans == null)
         {
             return;
         }

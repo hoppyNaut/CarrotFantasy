@@ -28,6 +28,11 @@ public class Bullet : MonoBehaviour
         gameController = GameController.Instance;
     }
 
+    protected virtual void OnEnable()
+    {
+        gameController = GameController.Instance;
+    }
+
     protected virtual void Update()
     {
         //游戏结束

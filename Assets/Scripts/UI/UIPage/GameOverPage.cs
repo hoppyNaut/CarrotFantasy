@@ -34,13 +34,13 @@ public class GameOverPage : MonoBehaviour
 
     public void ReplayGame()
     {
-        GameController.Instance.isGamePause = false;
+        //GameController.Instance.isGamePause = false;
         normalModePanel.Replay();
     }
 
     public void ChooseOtherLevel()
     {
-        GameController.Instance.isGamePause = false;
+        //GameController.Instance.isGamePause = false;
         normalModePanel.ChooseOtherLevel();
     }
 
