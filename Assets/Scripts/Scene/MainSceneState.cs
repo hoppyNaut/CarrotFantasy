@@ -25,6 +25,7 @@ public class MainSceneState : BaseSceneState
         mUIFacade.AddPanelToDict(Constant.MainPanel);
         mUIFacade.AddPanelToDict(Constant.GameLoadPanel);
         base.OnEnterScene();
+        GameManager.Instance.audioManager.PlayBgMusic(GameManager.Instance.GetAudioClip("Main/BGMusic"));
     }
 
     public override void OnExitScene()

@@ -22,10 +22,12 @@ public class NormalModeSceneState : BaseSceneState
         mUIFacade.AddPanelToDict(Constant.NormalModePanel);
 
         base.OnEnterScene();
+        GameManager.Instance.audioManager.CloseBgMusic();
     }
 
     public override void OnExitScene()
     {
         base.OnExitScene();
+        GameManager.Instance.audioManager.OpenBgMusic();
     }
 }

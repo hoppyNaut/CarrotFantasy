@@ -14,22 +14,26 @@ public class BtnSell : MonoBehaviour
 
     private void OnEnable()
     {
+#if Game
         if (txt_Price == null)
         {
             return;
         }
         UpdateIcon();
-    }
+#endif
+     }
 
 
     private void Start()
     {
+#if Game
         gameController = GameController.Instance;
         button = GetComponent<Button>();
         image = GetComponent<Image>();
         txt_Price = transform.Find("Txt_Sell").GetComponent<Text>();
         UpdateIcon();
         button.onClick.AddListener(SellTower);
+#endif
     }
 
     private void SellTower()
@@ -39,7 +43,9 @@ public class BtnSell : MonoBehaviour
         //后续对格子的处理
         gameController.selectGrid.InitGrid();
         gameController.selectGrid.handleTowerCanvasGo.SetActive(false);
+#if Game
         gameController.selectGrid.HideGrid();
+#endif
         gameController.selectGrid = null;
     }
 

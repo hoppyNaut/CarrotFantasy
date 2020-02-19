@@ -98,7 +98,10 @@ public class PrizePage : MonoBehaviour
 
     public void ClosePrizePage()
     {
-        GameController.Instance.isGamePause = false;
+        if(!normalModePanel.topPage.isPause)
+        {
+            GameController.Instance.isGamePause = false;
+        }
         normalModePanel.HidePrizePage();
     }
 }

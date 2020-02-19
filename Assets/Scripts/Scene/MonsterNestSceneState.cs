@@ -16,6 +16,7 @@ public class MonsterNestSceneState : BaseSceneState
         mUIFacade.AddPanelToDict(Constant.MonsterNestPanel);
 
         base.OnEnterScene();
+        GameManager.Instance.audioManager.PlayBgMusic(GameManager.Instance.GetAudioClip("MonsterNest/BGMusic02"));
     }
 
     public override void OnExitScene()

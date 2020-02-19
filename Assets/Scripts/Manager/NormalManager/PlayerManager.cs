@@ -63,9 +63,47 @@ public class PlayerManager
         //bigLevelNum = 3;
         //towerNum = 12;
 
+        //cookies = 0;
+        //milk = 0;
+        //nest = 0;
+        //diamonds = 0;
+
+        //unLockedNormalModeBigLevelList = new List<bool>()
+        //{
+        //    true,false,false
+        //};
+        //unLockedNormalModeLevelNumList = new List<int>()
+        //{
+        //    1,0,0
+        //};
+        //totalNormalModeLevelNumList = new List<int>()
+        //{
+        //    5,5,5
+        //};
+        //NormalModeLevelInfoList = new List<Stage>()
+        //{
+        //    new Stage(10,5,new int[]{ 1,2,3,4,5},false,0,1,1,true,false),
+        //    new Stage(10,2,new int[]{ 3,2},false,0,2,1,false,false),
+        //    new Stage(10,2,new int[]{ 4,2},false,0,3,1,false,false),
+        //    new Stage(10,2,new int[]{ 5,2},false,0,4,1,false,false),
+        //    new Stage(9,3,new int[]{ 1,2,3},false,0,5,1,false,true),
+        //    new Stage(8,2,new int[]{ 2,3},false,0,1,2,false,false),
+        //    new Stage(10,2,new int[]{ 1,3},false,0,2,2,false,false),
+        //    new Stage(9,1,new int[]{ 4},false,0,3,2,false,false),
+        //    new Stage(8,2,new int[]{ 1,4},false,0,4,2,false,false),
+        //    new Stage(10,2,new int[]{2,4},false,0,5,2,false,false),
+        //    new Stage(9,2,new int[]{ 3,4},false,0,1,3,false,false),
+        //    new Stage(8,1,new int[]{ 5},false,0,2,3,false,false),
+        //    new Stage(7,2,new int[]{ 4,5},false,0,3,3,false,false),
+        //    new Stage(10,3,new int[]{ 1,3,5},false,0,4,3,false,false),
+        //    new Stage(10,3,new int[]{ 1,4,5},false,0,5,3,false,false),
+        //};
+        //monsterPetDataList = new List<MonsterPetData>();
+
+        //Test
         //cookies = 1000;
         //milk = 1000;
-        //nest = 10;
+        //nest = 100;
         //diamonds = 1000;
 
         //unLockedNormalModeBigLevelList = new List<bool>()
@@ -83,20 +121,20 @@ public class PlayerManager
         //NormalModeLevelInfoList = new List<Stage>()
         //{
         //    new Stage(10,5,new int[]{ 1,2,3,4,5},false,0,1,1,true,false),
-        //    new Stage(10,2,new int[]{ 3,2},false,0,2,1,false,false),
-        //    new Stage(10,2,new int[]{ 4,2},false,0,3,1,false,false),
-        //    new Stage(10,2,new int[]{ 5,2},false,0,4,1,false,false),
-        //    new Stage(10,2,new int[]{ 6,2},false,0,5,1,false,true),
-        //    new Stage(10,3,new int[]{ 7,2,1},false,0,1,2,false,false),
-        //    new Stage(10,2,new int[]{ 8,2},false,0,2,2,false,false),
-        //    new Stage(10,2,new int[]{ 9,2},false,0,3,2,false,false),
-        //    new Stage(10,2,new int[]{ 10,2},false,0,4,2,false,false),
-        //    new Stage(10,2,new int[]{ 11,2},false,0,5,2,false,false),
-        //    new Stage(10,3,new int[]{ 7,2,1},false,0,1,3,false,false),
-        //    new Stage(10,2,new int[]{ 8,2},false,0,2,3,false,false),
-        //    new Stage(10,2,new int[]{ 9,2},false,0,3,3,false,false),
-        //    new Stage(10,2,new int[]{ 10,2},false,0,4,3,false,false),
-        //    new Stage(10,2,new int[]{ 11,2},false,0,5,3,false,false),
+        //    new Stage(10,2,new int[]{ 3,2},false,0,2,1,true,false),
+        //    new Stage(10,2,new int[]{ 4,2},false,0,3,1,true,false),
+        //    new Stage(10,2,new int[]{ 5,2},false,0,4,1,true,false),
+        //    new Stage(9,3,new int[]{ 1,2,3},false,0,5,1,true,true),
+        //    new Stage(8,2,new int[]{ 2,3},false,0,1,2,true,false),
+        //    new Stage(10,2,new int[]{ 1,3},false,0,2,2,true,false),
+        //    new Stage(9,1,new int[]{ 4},false,0,3,2,true,false),
+        //    new Stage(8,2,new int[]{ 1,4},false,0,4,2,true,false),
+        //    new Stage(10,2,new int[]{2,4},false,0,5,2,true,false),
+        //    new Stage(9,2,new int[]{ 3,4},false,0,1,3,true,false),
+        //    new Stage(8,1,new int[]{ 5},false,0,2,3,true,false),
+        //    new Stage(7,2,new int[]{ 4,5},false,0,3,3,true,false),
+        //    new Stage(10,3,new int[]{ 1,3,5},false,0,4,3,true,false),
+        //    new Stage(10,3,new int[]{ 1,4,5},false,0,5,3,true,false),
         //};
         //monsterPetDataList = new List<MonsterPetData>()
         //{

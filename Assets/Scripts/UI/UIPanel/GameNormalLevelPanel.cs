@@ -91,6 +91,7 @@ public class GameNormalLevelPanel : BasePanel
 
     public void ToGamePanel()
     {
+        mUIFacade.PlayButtonAudioClip();
         GameManager.Instance.curStage = GetCurStage(bigLevelID, levelID);
         mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
         mUIFacade.ChangeSceneState(new NormalModeSceneState(mUIFacade));

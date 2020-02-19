@@ -90,7 +90,7 @@ public class MapTool : Editor
     //读取关卡列表
     private List<FileInfo> GetFileList()
     {
-        string[] files = Directory.GetFiles(Application.dataPath + "/Resources/Json/Level/","*.json");
+        string[] files = Directory.GetFiles(Application.streamingAssetsPath + "/Json/Level/","*.json");
 
         List<FileInfo> list = new List<FileInfo>();
         for(int i = 0; i < files.Length; i++)

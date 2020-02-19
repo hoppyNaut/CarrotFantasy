@@ -77,13 +77,18 @@ public class SetPanel : BasePanel
 
     public void ShowOptionPage()
     {
-        optionPage.SetActive(true);
+        if(!optionPage.activeSelf)
+        {
+            mUIFacade.PlayButtonAudioClip();
+            optionPage.SetActive(true);
+        }              
         statisticsPage.SetActive(false);
         producePage.SetActive(false);
     }
 
     public void ShowStatisticsPage()
     {
+        mUIFacade.PlayButtonAudioClip();
         optionPage.SetActive(false);
         statisticsPage.SetActive(true);
         producePage.SetActive(false);
@@ -92,6 +97,7 @@ public class SetPanel : BasePanel
 
     public void ShowProducePage()
     {
+        mUIFacade.PlayButtonAudioClip();
         optionPage.SetActive(false);
         statisticsPage.SetActive(false);
         producePage.SetActive(true);
@@ -99,17 +105,20 @@ public class SetPanel : BasePanel
 
     public void OpenResetPage()
     {
+        mUIFacade.PlayButtonAudioClip();
         resetPage.SetActive(true);
     }
 
     public void CloseResetPage()
     {
+        mUIFacade.PlayButtonAudioClip();
         resetPage.SetActive(false);
     }
 
     //重置游戏
     public void ResetGame()
     {
+        mUIFacade.PlayButtonAudioClip();
         GameManager.Instance.initPlayerManager = true;
         GameManager.Instance.playerManager.ReadData();
         ShowStatistics();
@@ -131,6 +140,7 @@ public class SetPanel : BasePanel
 
     public void BackMainPanel()
     {
+        mUIFacade.PlayButtonAudioClip();
         ExitPanel();
         //mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
         mUIFacade.GetCurScenePanel(Constant.MainPanel).EnterPanel();
@@ -138,6 +148,7 @@ public class SetPanel : BasePanel
 
     public void ControlBGMusic()
     {
+        mUIFacade.PlayButtonAudioClip();
         playBGMusic = !playBGMusic;
         mUIFacade.CloseOrOpenBGMusic();
         if(playBGMusic)
@@ -152,6 +163,7 @@ public class SetPanel : BasePanel
 
     public void ControlEffectMusic()
     {
+        mUIFacade.PlayButtonAudioClip();
         playEffectMusic = !playEffectMusic;
         mUIFacade.CloseOrOpenEffectMusic();
         if(playEffectMusic)

@@ -157,6 +157,7 @@ public class Monster : MonoBehaviour
             int randomNum = Random.Range(0, 100);
             if(randomNum < 10)
             {
+                gameController.PlayEffectMusic("NormalMordel/GiftCreate");
                 GameObject prizeGo = gameController.GetGameObjectResource("Prize");
                 prizeGo.transform.position = transform.position;
             }
@@ -177,6 +178,7 @@ public class Monster : MonoBehaviour
         CurHp -= damage;
         if(CurHp <= 0)
         {
+            gameController.PlayEffectMusic("NormalMordel/Monster/" + gameController.curStage.mBigLevelID.ToString() + "/" + monsterID.ToString());
             //怪物死亡处理
             DestroyMonster();
             return;
@@ -192,6 +194,7 @@ public class Monster : MonoBehaviour
 
     private void UpdateHpSlider()
     {
+        Debug.Log("UpdateHpSlider");
         hpSlider.gameObject.SetActive(true);
         hpSlider.value = curHp * 1.0f / hp;
     }

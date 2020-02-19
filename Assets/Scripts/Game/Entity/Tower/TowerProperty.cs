@@ -91,6 +91,7 @@ public class TowerProperty : MonoBehaviour
 
     public void SellTower()
     {
+        gameController.PlayEffectMusic("NormalMordel/Tower/TowerSell");
         gameController.AddCoin(sellPrice);
         //产生销毁特效       
         GameObject effectGo = gameController.GetGameObjectResource("BuildEffect");
@@ -101,6 +102,7 @@ public class TowerProperty : MonoBehaviour
 
     public void UpLevelTower()
     {
+        gameController.PlayEffectMusic("NormalMordel/Tower/TowerUpdate");
         gameController.AddCoin(-upLevelPrice);
         GameObject effectGo = gameController.GetGameObjectResource("UpLevelEffect");
         effectGo.transform.position = transform.position;
@@ -115,6 +117,7 @@ public class TowerProperty : MonoBehaviour
         {
             return;
         }
+        gameController.PlayEffectMusic("NormalMordel/Tower/Attack/" + tower.towerID.ToString());
         animator.Play("Attack");
         bulletGo = gameController.GetGameObjectResource("Tower/ID" + tower.towerID.ToString() + "/Bullect/" + tower.towerLevel.ToString());
         bulletGo.transform.position = transform.position;

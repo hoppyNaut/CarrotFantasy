@@ -77,7 +77,7 @@ public class GridPoint : MonoBehaviour
         monsterPathSprite = Resources.Load<Sprite>("Sprites/NormalMordel/Game/monsterPath");
         int itemNum = MapMaker.Instance.bigLevelInfoItemList[MapMaker.Instance.bigLevelID - 1].itemNum_Total;
         itemPrefabs = new GameObject[itemNum];
-        string prefabPath = "Prefabs/Game/" + MapMaker.Instance.bigLevelID.ToString() + "/Items/";
+        string prefabPath = "Prefabs/Game/" + MapMaker.Instance.bigLevelID.ToString() + "/Item/";
         for(int i = 0; i < itemPrefabs.Length; i++)
         {
             itemPrefabs[i] = Resources.Load<GameObject>(prefabPath + i.ToString());
@@ -296,16 +296,19 @@ public class GridPoint : MonoBehaviour
         {
             if(gameController.selectGrid == null)
             {
+                GameController.Instance.PlayEffectMusic("NormalMordel/Grid/GridSelect");
                 gameController.selectGrid = this;
                 ShowGrid();
             }
             else if (gameController.selectGrid == this)//如果点击已被选中的格子
             {
+                GameController.Instance.PlayEffectMusic("NormalMordel/Grid/GridDeselect");
                 gameController.selectGrid.HideGrid();
                 gameController.selectGrid = null;
             }
             else if(gameController.selectGrid != this)
             {
+                GameController.Instance.PlayEffectMusic("NormalMordel/Grid/GridSelect");
                 gameController.selectGrid.HideGrid();
                 gameController.selectGrid = this;
                 ShowGrid();
@@ -314,6 +317,7 @@ public class GridPoint : MonoBehaviour
         }
         else
         {
+            GameController.Instance.PlayEffectMusic("NormalMordel/Grid/SelectFault");
             if (gameController.selectGrid != null)
             {
                 gameController.selectGrid.HideGrid();

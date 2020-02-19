@@ -71,6 +71,7 @@ public class MonsterPet : MonoBehaviour
 
     public void ClickPet()
     {
+        GameManager.Instance.audioManager.PlayEffectMusic(GameManager.Instance.GetAudioClip("MonsterNest/PetSound" + monsterPetData.monsterLevel.ToString()));
         switch(monsterPetData.monsterLevel)
         {
             case 1:
@@ -174,6 +175,7 @@ public class MonsterPet : MonoBehaviour
 
     public void FeedCookie()
     {
+        GameManager.Instance.audioManager.PlayEffectMusic(GameManager.Instance.GetAudioClip("MonsterNest/Feed02"));
         GameManager.Instance.playerManager.cookies -= monsterPetData.remainCookies;
         monsterPetData.remainCookies = 0;
         emp_FeedGo.SetActive(false);
@@ -183,17 +185,19 @@ public class MonsterPet : MonoBehaviour
 
     public void FeedMilk()
     {
+        GameManager.Instance.audioManager.PlayEffectMusic(GameManager.Instance.GetAudioClip("MonsterNest/Feed01"));
         GameManager.Instance.playerManager.milk -= monsterPetData.remainMilk;
         monsterPetData.remainMilk = 0;
         emp_FeedGo.SetActive(false);
         monsterNestPanel.UpdateText();
-        GrowUp();
+        Invoke("Grow", 0.5f);
     }
 
     private void GrowUp()
     {
         if(monsterPetData.remainMilk == 0 && monsterPetData.remainCookies == 0)
         {
+            GameManager.Instance.audioManager.PlayEffectMusic(GameManager.Instance.GetAudioClip("MonsterNest/PetChange"));
             monsterPetData.monsterLevel++;
             if(monsterPetData.monsterLevel >= 3)
             {

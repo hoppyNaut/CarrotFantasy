@@ -67,6 +67,8 @@ public class Carrot : MonoBehaviour
         {
             animator.Play("Touch");
             idleTimer = 0;
+            int randomNum = Random.Range(1, 4);
+            GameController.Instance.PlayEffectMusic("NormalMordel/Carrot/" + randomNum.ToString());
         }
     }
 }

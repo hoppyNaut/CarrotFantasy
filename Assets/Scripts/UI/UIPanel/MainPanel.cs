@@ -65,6 +65,7 @@ public class MainPanel : BasePanel
 
     public void MoveToLeft()
     {
+        mUIFacade.PlayButtonAudioClip();
         exitTween = mainPanelTween[0];
         ExitPanel();
         //mUIFacade.currentScenePanelDict[Constant.HelpPanel].EnterPanel();
@@ -73,6 +74,7 @@ public class MainPanel : BasePanel
 
     public void MoveToRight()
     {
+        mUIFacade.PlayButtonAudioClip();
         exitTween = mainPanelTween[1];
         ExitPanel();
         //mUIFacade.currentScenePanelDict[Constant.SetPanel].EnterPanel();
@@ -89,6 +91,7 @@ public class MainPanel : BasePanel
 
     public void OnBtnNormalClick()
     {
+        mUIFacade.PlayButtonAudioClip();
         //mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
         mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
         mUIFacade.ChangeSceneState(new GameNormalOptionSceneState(mUIFacade));
@@ -96,6 +99,7 @@ public class MainPanel : BasePanel
 
     public void OnBtnBossClick()
     {
+        mUIFacade.PlayButtonAudioClip();
         //mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
         mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
         mUIFacade.ChangeSceneState(new GameBossOptionSceneState(mUIFacade));
@@ -103,6 +107,7 @@ public class MainPanel : BasePanel
 
     public void OnBtnMonsterNestClick()
     {
+        mUIFacade.PlayButtonAudioClip();
         //mUIFacade.currentScenePanelDict[Constant.GameLoadPanel].EnterPanel();
         mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
         mUIFacade.ChangeSceneState(new MonsterNestSceneState(mUIFacade));
@@ -110,6 +115,8 @@ public class MainPanel : BasePanel
 
     public void OnBtnExitClick()
     {
+        mUIFacade.PlayButtonAudioClip();
+        GameManager.Instance.playerManager.SaveData();
         Application.Quit();
     }
 }

@@ -19,7 +19,9 @@ public class Item : MonoBehaviour
         {
             curHp = value;
             //更新血条
+#if Game
             UpdateHpSlider();
+#endif
         }
     }
     //销毁时金币奖励
@@ -38,19 +40,28 @@ public class Item : MonoBehaviour
         {
             return;
         }
+#if Game
         InitItem();
+#endif
     }
 
     private void Start()
     {
+#if Tool
+        GetComponent<BoxCollider2D>().enabled = false;
+        transform.Find("Mask").GetComponent<BoxCollider>().enabled = false;
+#endif
         gameController = GameController.Instance;
         hpSlider = transform.Find("ItemCanvas").Find("HpSlider").GetComponent<Slider>();
         hpSlider.gameObject.SetActive(false);
+#if Game
         InitItem();
-    }
+#endif
+     }
 
     private void Update()
     {
+#if Game
         if(gameController.isGamePause)
         {
             return;
@@ -66,6 +77,7 @@ public class Item : MonoBehaviour
                 hpHideTimer = 3;
             }
         }
+#endif
     }
 
 #if Game
@@ -100,6 +112,7 @@ public class Item : MonoBehaviour
 
     private void DestroyItem()
     {
+        gameController.PlayEffectMusic("NormalMordel/Item");
         //产生销毁特效
         GameObject deathEffect = gameController.GetGameObjectResource("DestroyEffect");
         deathEffect.transform.SetParent(gameController.transform);

@@ -46,6 +46,7 @@ public class BtnTower : MonoBehaviour
     //建塔
     private void BuildTower()
     {
+        gameController.PlayEffectMusic("NormalMordel/Tower/TowerBuild");
         gameController.towerBuilder.towerID = towerID;
         gameController.towerBuilder.towerLevel = 1;
         GameObject towerGo = gameController.towerBuilder.GetProduct();
@@ -58,8 +59,10 @@ public class BtnTower : MonoBehaviour
         effectGo.transform.position = gameController.selectGrid.transform.position;
 
         //处理格子状态
+#if Game
         gameController.selectGrid.FinishBuildTower(towerGo);
         gameController.selectGrid.HideGrid();
+#endif
         gameController.selectGrid.hasTower = true;
         gameController.AddCoin(-price);
         gameController.selectGrid = null;

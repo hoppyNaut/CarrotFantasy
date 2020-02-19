@@ -96,6 +96,7 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
         SetTxtPage();
         //发送翻页信息
         SendMessageUpwards("UpdateCurLevelInfo", curIndex + 1, SendMessageOptions.DontRequireReceiver);
+        GameManager.Instance.audioManager.PlayPagingAudioClip();
     }
 
     public void SetTxtPage()
@@ -109,8 +110,9 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
 
     public void MoveNext()
     {
-        if(curIndex < page.Length - 1)
+        if (curIndex < page.Length - 1)
         {
+            GameManager.Instance.audioManager.PlayButtonAudioClip();
             curIndex++;
             targetHorizontalPosition = page[curIndex];
             SetTxtPage();
@@ -118,9 +120,10 @@ public class ScrollViewControllerOne : MonoBehaviour,IBeginDragHandler,IDragHand
     }
 
     public void MovePrev()
-    {
-        if(curIndex > 0)
+    {        
+        if (curIndex > 0)
         {
+            GameManager.Instance.audioManager.PlayButtonAudioClip();
             curIndex--;
             targetHorizontalPosition = page[curIndex];
             SetTxtPage();

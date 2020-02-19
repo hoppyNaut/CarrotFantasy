@@ -16,7 +16,8 @@ public class GameNormalOptionPanel : BasePanel
 
     public void BackToLastPanel()
     {
-        if(isInBigLevel)
+        mUIFacade.PlayButtonAudioClip();
+        if (isInBigLevel)
         {
             //返回主界面
             mUIFacade.GetCurScenePanel(Constant.GameLoadPanel).EnterPanel();
@@ -35,6 +36,7 @@ public class GameNormalOptionPanel : BasePanel
 
     public void ShowHelpPanel()
     {
+        mUIFacade.PlayButtonAudioClip();
         //mUIFacade.currentScenePanelDict[Constant.HelpPanel].EnterPanel();
         mUIFacade.GetCurScenePanel(Constant.HelpPanel).EnterPanel();
     }

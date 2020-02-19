@@ -143,6 +143,10 @@ public class GameController : MonoBehaviour
             //产怪
             if(curRoundKillMonsterNum >= monsterIDList.Length)
             {
+                if(curLevel.curRound >= curLevel.totalRound)
+                {
+                    return;
+                }
                 //当前回合数加一
                 AddRoundNum();
             }
@@ -180,6 +184,7 @@ public class GameController : MonoBehaviour
     #region 集火目标处理方法
     public void ShowSignal()
     {
+        PlayEffectMusic("NormalMordel/Tower/ShootSelect");
         targetSignal.transform.position = targetTrans.position + new Vector3(0,mapMaker.gridHeight / 2 ,0);
         targetSignal.transform.SetParent(targetTrans);
         targetSignal.SetActive(true);
@@ -219,6 +224,7 @@ public class GameController : MonoBehaviour
 
     public void DecreaseCarrotHp()
     {
+        PlayEffectMusic("NormalMordel/Carrot/Crash");
         carrotHp -= 1;
         mapMaker.carrot.SetHp(carrotHp);
     }
@@ -266,6 +272,7 @@ public class GameController : MonoBehaviour
 
     private void InstantiateMonster()
     {
+        PlayEffectMusic("NormalMordel/Monster/Create");
         if (monsterIDIndex >= monsterIDList.Length)
         {
             StopCreateMonster();
@@ -330,4 +337,9 @@ public class GameController : MonoBehaviour
         gameManager.PushGameObjectToFactory(FactoryType.GameFactory, name, go);
     }
     #endregion
+
+    public void PlayEffectMusic(string audioClip)
+    {
+        gameManager.audioManager.PlayEffectMusic(GetAudioClip(audioClip));
+    }
 }

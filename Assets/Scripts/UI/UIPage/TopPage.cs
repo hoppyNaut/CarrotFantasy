@@ -18,7 +18,7 @@ public class TopPage : MonoBehaviour
     public Sprite[] btn_PauseSprite;//0:暂停 1:开始
 
     private bool isNormalSpeed;
-    private bool isPause;
+    public bool isPause;
 
     private NormalModePanel normalModePanel;
 
@@ -69,6 +69,7 @@ public class TopPage : MonoBehaviour
 
     public void ChangeGameSpeed()
     {
+        GameManager.Instance.audioManager.PlayButtonAudioClip();
         isNormalSpeed = !isNormalSpeed;
         if(isNormalSpeed)
         {
@@ -84,6 +85,7 @@ public class TopPage : MonoBehaviour
 
     public void PauseGame()
     {
+        GameManager.Instance.audioManager.PlayButtonAudioClip();
         isPause = !isPause;
         if(isPause)
         {

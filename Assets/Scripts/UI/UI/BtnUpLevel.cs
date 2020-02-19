@@ -25,25 +25,31 @@ public class BtnUpLevel : MonoBehaviour
 
     private void OnEnable()
     {
+#if Game
         if(txt_Price == null)
         {
             return;
         }
         UpdateIcon();
+#endif
     }
 
     void Start()
     {
+#if Game
         canUpLevelSprite = gameController.GetSprite("NormalMordel/Game/Tower/Btn_CanUpLevel");
         cantUpLevelSprite = gameController.GetSprite("NormalMordel/Game/Tower/Btn_CantUpLevel");
         reachHighestLevelSprite = gameController.GetSprite("NormalMordel/Game/Tower/Btn_ReachHighestLevel");
         UpdateIcon();
         button.onClick.AddListener(UpLevel);
-    }
+#endif
+        }
 
     private void Update()
     {
+#if Game
         UpdateIcon();
+#endif
     }
 
     private void UpLevel()
@@ -59,9 +65,11 @@ public class BtnUpLevel : MonoBehaviour
         towerGo.transform.position = gameController.selectGrid.transform.position;
         towerGo.transform.localEulerAngles = new Vector3(-90, 90, 0);
         //后续处理
+#if Game
         gameController.selectGrid.FinishBuildTower(towerGo);
         gameController.selectGrid.HideGrid();
-        gameController.selectGrid = null;
+#endif
+    gameController.selectGrid = null;
 
     }
 

@@ -98,5 +98,17 @@ public class AudioManager
             CloseEffectMusic();
         }
     }
+
+    //按钮音效
+    public void PlayButtonAudioClip()
+    {
+        PlayEffectMusic(GameManager.Instance.GetAudioClip("Main/Button"));
+    }
+
+    //翻书音效
+    public void PlayPagingAudioClip()
+    {
+        PlayEffectMusic(GameManager.Instance.GetAudioClip("Main/Paging"));
+    }
     #endregion
 }

@@ -180,6 +180,16 @@ public class UIFacade
     {
         mAudioManager.CloseOrOpenEffectMusic();
     }
+
+    public void PlayButtonAudioClip()
+    {
+        mAudioManager.PlayButtonAudioClip();
+    }
+
+    public void PlayPagingAudioClip()
+    {
+        mAudioManager.PlayPagingAudioClip();
+    }
     #endregion
 
 }

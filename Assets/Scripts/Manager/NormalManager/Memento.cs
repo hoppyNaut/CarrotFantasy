@@ -10,8 +10,8 @@ public class Memento
     {
         PlayerManager playerManager = GameManager.Instance.playerManager;
         //Test
-        string filePath = Application.dataPath + "/Resources/Json/Player/TestPlayerManager.json";
-        //string filePath = Application.dataPath + "/Resources/Json/Player/PlayerManager.json";
+        //string filePath = Application.streamingAssetsPath + "/Json/Player/TestPlayerManager.json";
+        string filePath = Application.streamingAssetsPath + "/Json/Player/PlayerManager.json";
         string jsonStr = JsonMapper.ToJson(playerManager);
         StreamWriter sw = new StreamWriter(filePath);
         sw.Write(jsonStr);
@@ -25,16 +25,16 @@ public class Memento
 
         if(GameManager.Instance.initPlayerManager)
         {
-            filePath = Application.dataPath + "/Resources/Json/Player/playerManagerInitData.json";
+            filePath = Application.streamingAssetsPath + "/Json/Player/playerManagerInitData.json";
         }
         else
         {
             //Test
-           filePath = Application.dataPath + "/Resources/Json/Player/TestPlayerManager.json";
-           //filePath = Application.dataPath + "/Resources/Json/Player/PlayerManager.json";
+           //filePath = Application.streamingAssetsPath + "/Json/Player/TestPlayerManager.json";
+            filePath = Application.streamingAssetsPath + "/Json/Player/PlayerManager.json";
         }
 
-        if(File.Exists(filePath))
+        if (File.Exists(filePath))
         {
             StreamReader sr = new StreamReader(filePath);
             string jsonStr = sr.ReadToEnd();

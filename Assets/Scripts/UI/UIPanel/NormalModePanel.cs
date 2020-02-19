@@ -51,11 +51,10 @@ public class NormalModePanel : BasePanel
 
     private void OnEnable()
     {
-        startUIGo.SetActive(true);
         //播放倒计时音效
-        InvokeRepeating("PlayAudio", 0, 1);
+        InvokeRepeating("PlayAudio", 0.5f, 1);
         //倒计时结束后开始游戏
-        Invoke("StartGame",3);
+        Invoke("StartGame",3.5f);
     }
 
     public override void EnterPanel()
@@ -78,21 +77,25 @@ public class NormalModePanel : BasePanel
 
     public void HidePrizePage()
     {
+        mUIFacade.PlayButtonAudioClip();
         prizePageGo.SetActive(false);
     }
 
     public void ShowMenuPage()
     {
+        mUIFacade.PlayButtonAudioClip();
         menuPageGo.SetActive(true);
     }
 
     public void HideMenuPage()
     {
+        mUIFacade.PlayButtonAudioClip();
         menuPageGo.SetActive(false);
     }
 
     public void ShowGameWinPage()
     {
+        GameController.Instance.PlayEffectMusic("NormalMordel/Perfect");
         GameController.Instance.isGameOver = true;
         UpdatePlayerManagerData();
         //获取当前小关卡索引
@@ -133,6 +136,7 @@ public class NormalModePanel : BasePanel
 
     public void ShowGameOverPage()
     {
+        GameController.Instance.PlayEffectMusic("NormalMordel/Lose");
         GameController.Instance.isGameOver = true;
         UpdatePlayerManagerData();
         gameOverPageGo.SetActive(true);
@@ -140,6 +144,7 @@ public class NormalModePanel : BasePanel
 
     public void ShowFinalWaveUI()
     {
+        GameController.Instance.PlayEffectMusic("NormalMordel/Finalwave");
         finalWaveGo.SetActive(true);
         Invoke("HideFinalWaveUI", 1);
     }
@@ -180,8 +185,9 @@ public class NormalModePanel : BasePanel
 
     public void Replay()
     {
+        mUIFacade.PlayButtonAudioClip();
         //当游戏结束时,更新当局游戏数据
-        if(GameController.Instance.isGameOver)
+        if (GameController.Instance.isGameOver)
         {
             UpdatePlayerManagerData();
         }
@@ -205,6 +211,7 @@ public class NormalModePanel : BasePanel
 
     public void ChooseOtherLevel()
     {
+        mUIFacade.PlayButtonAudioClip();
         //当游戏结束时,更新当局游戏数据
         if (GameController.Instance.isGameOver)
         {
@@ -224,11 +231,13 @@ public class NormalModePanel : BasePanel
 
     private void PlayAudio()
     {
-
+        startUIGo.SetActive(true);
+        GameController.Instance.PlayEffectMusic("NormalMordel/CountDown");
     }
 
     private void StartGame()
     {
+        GameController.Instance.PlayEffectMusic("NormalMordel/GO");
         GameController.Instance.StartGame();
         startUIGo.SetActive(false);
         CancelInvoke();

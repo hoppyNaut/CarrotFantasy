@@ -274,7 +274,7 @@ public class MapMaker : MonoBehaviour
     public void SaveLevelInfoByJson()
     {
         LevelInfo levelInfo = CreateLevelInfo();
-        string filePath = Application.dataPath + "/Resources/Json/Level/" + "Level" + bigLevelID.ToString() + "_" + levelID.ToString() + ".json";
+        string filePath = Application.streamingAssetsPath + "/Json/Level/" + "Level" + bigLevelID.ToString() + "_" + levelID.ToString() + ".json";
         string jsonStr = JsonMapper.ToJson(levelInfo);
         StreamWriter writer = new StreamWriter(filePath);
         writer.Write(jsonStr);
@@ -286,7 +286,7 @@ public class MapMaker : MonoBehaviour
     public LevelInfo LoadLevelInfoByJson(string fileName)
     {
         LevelInfo levelInfo = new LevelInfo();
-        string filePath = Application.dataPath + "/Resources/Json/Level/" + fileName;
+        string filePath = Application.streamingAssetsPath + "/Json/Level/" + fileName;
         if(File.Exists(filePath))
         {
             StreamReader reader = new StreamReader(filePath);

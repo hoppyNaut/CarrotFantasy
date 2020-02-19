@@ -66,6 +66,7 @@ public class GameNormalBigLevelPanel : BasePanel
             {
                 theBigLevelButton.onClick.AddListener(() =>
                 {
+                    mUIFacade.PlayButtonAudioClip();
                     //离开大关卡页面
                     //mUIFacade.currentScenePanelDict[Constant.GameNormalBigLevelPanel].ExitPanel();
                     mUIFacade.GetCurScenePanel(Constant.GameNormalBigLevelPanel).ExitPanel();

@@ -68,16 +68,19 @@ public class MonsterNestPanel : BasePanel
 
     public void ShowShopPanel()
     {
+        mUIFacade.PlayButtonAudioClip();
         shopPageGo.SetActive(true);
     }
 
     public void CloseShopPanel()
     {
+        mUIFacade.PlayButtonAudioClip();
         shopPageGo.SetActive(false);
     }
 
     public void ReturnToMain()
     {
+        mUIFacade.PlayButtonAudioClip();
         mUIFacade.ChangeSceneState(new MainSceneState(mUIFacade));
     }
 
@@ -91,7 +94,8 @@ public class MonsterNestPanel : BasePanel
 
     public void BuyNest()
     {
-        if(GameManager.Instance.playerManager.diamonds >= 60)
+        mUIFacade.PlayButtonAudioClip();
+        if (GameManager.Instance.playerManager.diamonds >= 60)
         {
             GameManager.Instance.playerManager.diamonds -= 60;
             GameManager.Instance.playerManager.nest++;
@@ -101,7 +105,8 @@ public class MonsterNestPanel : BasePanel
 
     public void BuyMilk()
     {
-        if(GameManager.Instance.playerManager.diamonds >= 1)
+        mUIFacade.PlayButtonAudioClip();
+        if (GameManager.Instance.playerManager.diamonds >= 1)
         {
             GameManager.Instance.playerManager.diamonds--;
             GameManager.Instance.playerManager.milk += 10;
@@ -111,7 +116,8 @@ public class MonsterNestPanel : BasePanel
 
     public void BuyCookies()
     {
-        if(GameManager.Instance.playerManager.diamonds >= 10)
+        mUIFacade.PlayButtonAudioClip();
+        if (GameManager.Instance.playerManager.diamonds >= 10)
         {
             GameManager.Instance.playerManager.diamonds -= 10;
             GameManager.Instance.playerManager.cookies += 15;

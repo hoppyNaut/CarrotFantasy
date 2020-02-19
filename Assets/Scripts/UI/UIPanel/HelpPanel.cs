@@ -72,13 +72,19 @@ public class HelpPanel : BasePanel
 
     public void ShowHelpPage()
     {
-        helpPage.SetActive(true);
+        if(!helpPage.activeSelf)
+        {
+            mUIFacade.PlayButtonAudioClip();
+            helpPage.SetActive(true);
+        }
+       
         monsterPage.SetActive(false);
         towerPage.SetActive(false);
     }
 
     public void ShowMonsterPage()
     {
+        mUIFacade.PlayButtonAudioClip();
         helpPage.SetActive(false);
         monsterPage.SetActive(true);
         towerPage.SetActive(false);
@@ -86,6 +92,7 @@ public class HelpPanel : BasePanel
 
     public void ShowTowerPage()
     {
+        mUIFacade.PlayButtonAudioClip();
         helpPage.SetActive(false);
         monsterPage.SetActive(false);
         towerPage.SetActive(true);
@@ -93,6 +100,7 @@ public class HelpPanel : BasePanel
 
     public void BackToMain()
     {
+        mUIFacade.PlayButtonAudioClip();
         ExitPanel();
         //mUIFacade.currentScenePanelDict[Constant.MainPanel].EnterPanel();
         if(mUIFacade.currentSceneState.GetType() == typeof(MainSceneState))
